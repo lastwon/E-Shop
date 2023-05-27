@@ -1,0 +1,61 @@
+@import "index.css";
+
+.hero {
+  position: relative;
+  height: 400px;
+  padding-top: 0;
+  margin-bottom: 18px;
+  background: linear-gradient(
+    0deg,
+    rgba(176, 232, 129, 0.4) 0%,
+    rgba(114, 247, 197, 0.4) 100%
+  );
+  text-align: center;
+  min-width: 250px;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.container {
+  margin: 0 auto;
+  height: calc(100% - 113px);
+  max-width: var(--container-max);
+}
+
+.container img {
+  width: 25%;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 113px;
+}
+
+ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 8.5%;
+  height: 100%;
+  margin: 0;
+  gap: 10px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+ul li h6 {
+  width: 90%;
+}
+
+.category {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  max-width: var(--container-max);
+}
