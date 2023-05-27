@@ -1,0 +1,127 @@
+@import "index.css";
+
+nav {
+  display: flex;
+  padding: 15px 12px 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 1px 2px 0 #0000001a;
+  height: 80px;
+}
+
+.burger {
+  display: flex;
+  height: 43px;
+  padding: 0 17px 0 8px;
+  background: #1a242c;
+  color: #fff;
+  font-family: var(--font-manrope);
+  font-weight: 600;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  white-space: nowrap;
+}
+
+.logo {
+  min-width: 152px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-darker-green);
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 1200px;
+  min-width: 100px;
+}
+
+.search-bar {
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid #ececec;
+  background: #f6f6f6;
+  padding: 13px 13px 13px 45px;
+  font-family: var(--font-manrope);
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.search-go {
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.reg-login,
+.wishlist-container,
+.help-container,
+.shopping-container {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 5px 0 0 15px;
+}
+
+.shopping-container {
+  padding: 5px 15px 0 15px;
+}
+
+.reg-login a,
+.wishlist-container a,
+.help-container a,
+.shopping-container a {
+  display: flex;
+  align-items: center;
+}
+
+.register,
+.wishlist-container,
+.help-container {
+  max-width: 140px;
+}
+
+.reg-login .register span,
+.reg-login .wishlist span,
+.reg-login .help-text span,
+.wishlist-container .register span,
+.wishlist-container .wishlist span,
+.wishlist-container .help-text span,
+.help-container .register span,
+.help-container .wishlist span,
+.help-container .help-text span,
+.shopping-container .cart-text span {
+  display: block;
+  font-size: 10px;
+  color: #212121;
+}
+
+.reg-login .register span:last-child,
+.reg-login .wishlist span:last-child,
+.reg-login .help-text span:last-child,
+.wishlist-container .register span:last-child,
+.wishlist-container .wishlist span:last-child,
+.wishlist-container .help-text span:last-child,
+.help-container .register span:last-child,
+.help-container .wishlist span:last-child,
+.help-container .help-text span:last-child,
+.shopping-container .cart-text span:last-child {
+  font-size: 14px;
+  font-weight: 700;
+  color: #787171;
+  white-space: nowrap;
+}
