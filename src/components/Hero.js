@@ -1,107 +1,103 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 import "../styles/hero.css";
 
-import { CiDiscount1 } from "react-icons/ci";
-
-import gif1 from "../images/1.gif";
-import gif2 from "../images/2.gif";
-import gif3 from "../images/3.gif";
+import { MdOutlineDiscount } from "react-icons/md";
+import { TbDiscount } from "react-icons/tb";
+import { GiSmartphone } from "react-icons/gi";
+import { MdComputer } from "react-icons/md";
+import { GiLockers } from "react-icons/gi";
+import { TbPerfume } from "react-icons/tb";
+import { GiGardeningShears } from "react-icons/gi";
+import { TbSofa } from "react-icons/tb";
+import { BiBasketball } from "react-icons/bi";
+import { MdOutlineToys } from "react-icons/md";
+import { GiClothes } from "react-icons/gi";
+import { RxHamburgerMenu } from "react-icons/rx";
+import Slides from "./Slides";
 
 const Hero = () => {
-  const images = [gif1, gif2, gif3];
   const style = {
-    color: "red",
+    color: "#212121",
     fontSize: "45px",
   };
   const category = [
     {
       id: 1,
-      icon: <CiDiscount1 style={style} />,
+      icon: <MdOutlineDiscount style={style} />,
       title: "Discounts",
       background: "#FAE2CA",
     },
     {
       id: 2,
-      icon: <CiDiscount1 style={style} />,
+      icon: <TbDiscount style={style} />,
       title: "Sale",
       background: "#F3D3C8",
     },
     {
       id: 3,
-      icon: <CiDiscount1 style={style} />,
+      icon: <GiSmartphone style={style} />,
       title: "Phones, foto and video",
       background: "#F3E2B6",
     },
     {
       id: 4,
-      icon: <CiDiscount1 style={style} />,
+      icon: <MdComputer style={style} />,
       title: "Computers and components",
       background: "#CBE9C3",
     },
     {
       id: 5,
-      icon: <CiDiscount1 style={style} />,
+      icon: <GiLockers style={style} />,
       title: "Electronics",
       background: "#D1D7ED",
     },
     {
       id: 6,
-      icon: <CiDiscount1 style={style} />,
+      icon: <TbPerfume style={style} />,
       title: "Perfumes and cosmetics",
       background: "#E1BFCD",
     },
     {
       id: 7,
-      icon: <CiDiscount1 style={style} />,
+      icon: <GiGardeningShears style={style} />,
       title: "Garden goods, tools",
       background: "#EEDCDC",
     },
     {
       id: 8,
-      icon: <CiDiscount1 style={style} />,
+      icon: <TbSofa style={style} />,
       title: "Furniture and home interior",
       background: "#F3D3C8",
     },
     {
       id: 9,
-      icon: <CiDiscount1 style={style} />,
+      icon: <BiBasketball style={style} />,
       title: "Sports, free time",
       background: "#FAE2CA",
     },
     {
       id: 10,
-      icon: <CiDiscount1 style={style} />,
+      icon: <MdOutlineToys style={style} />,
       title: "Toys",
       background: "#DFE9E0",
     },
     {
       id: 11,
-      icon: <CiDiscount1 style={style} />,
+      icon: <GiClothes style={style} />,
       title: "Clothing, footwear",
       background: "#DCEEF0",
     },
     {
       id: 12,
-      icon: <CiDiscount1 style={style} />,
+      icon: <RxHamburgerMenu style={style} />,
       title: "All categories",
       background: "#F1E6DB",
     },
   ];
   return (
     <section className="hero">
-      <div className="container">
-        <Slider autoplay={true} autoplaySpeed={4500} dots={true} arrows={false}>
-          {images.map((image, index) => (
-            <div className="images" key={index}>
-              <img src={image} alt={`Image ${index + 1}`} />
-            </div>
-          ))}
-        </Slider>
-      </div>
+      <Slides />
       <div className="category">
         <ul>
           {category.map((categ) => (
@@ -109,8 +105,10 @@ const Hero = () => {
               key={categ.id}
               style={{ backgroundColor: `${categ.background}` }}
             >
-              {categ.icon}
-              <h6>{categ.title}</h6>
+              <a href="">
+                {categ.icon}
+                <h6>{categ.title}</h6>
+              </a>
             </li>
           ))}
         </ul>

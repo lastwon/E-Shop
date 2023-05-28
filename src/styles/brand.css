@@ -1,0 +1,45 @@
+.main-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.brand {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.brand-logo {
+  margin: 0 auto;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  overflow-x: hidden;
+}
+
+.brand-logo img {
+  animation: infinite-scroll 10s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(-600%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.brand-logo li {
+  height: 40px;
+}
+
+.brand-logo li img {
+  display: inline-block;
+  position: static;
+  vertical-align: middle;
+  max-height: 100%;
+  margin: 0 20px;
+}

@@ -1,3 +1,4 @@
+import Brands from "./components/Brands";
 import Hero from "./components/Hero";
 import Nav from "./components/Nav";
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Nav />
       <Hero />
+      <Brands />
     </>
   );
 }

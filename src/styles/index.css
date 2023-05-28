@@ -47,3 +47,8 @@ p {
 a {
   text-decoration: none;
 }
+
+a:hover {
+  color: #140f26;
+  text-decoration: underline;
+}
