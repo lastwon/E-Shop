@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ProductsList from "./ProductsList";
 
 import "../styles/products.css";
+import Countdown from "./Countdown";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -28,7 +29,9 @@ const Products = () => {
     <>
       <div className="spacer"></div>
       <div className="main-container">
+        <Countdown />
         <ProductsList products={products} />
+        <div className="spacer"></div>
       </div>
     </>
   );

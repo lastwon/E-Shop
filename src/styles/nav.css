@@ -33,6 +33,10 @@ nav {
   color: var(--color-darker-green);
 }
 
+.logo:hover {
+  text-decoration: none;
+}
+
 .search-container {
   position: relative;
   display: flex;

@@ -1,6 +1,8 @@
 import React from "react";
 import { stripHtml } from "string-strip-html";
 
+import { CiDeliveryTruck } from "react-icons/ci";
+import { AiFillStar } from "react-icons/ai";
 import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
 
@@ -38,6 +40,21 @@ const ProductItem = ({ product }) => {
         </div>
         <div className="product__name">
           <a href="">{product.title}</a>
+        </div>
+      </div>
+      <div className="product__general">
+        <div className="rating">
+          <AiFillStar
+            className="star"
+            style={{ height: "100%", width: "auto", paddingRight: "5px" }}
+          />
+          <span>0.0</span>
+        </div>
+        <div className="delivery">
+          <CiDeliveryTruck
+            style={{ height: "100%", width: "auto", paddingRight: "5px" }}
+          />
+          <span>0-2 W/D</span>
         </div>
       </div>
       <div className="product__price">
