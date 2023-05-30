@@ -1,0 +1,41 @@
+@import "index.css";
+
+.footer__links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 25px;
+  height: 215px;
+}
+
+.footer__links ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__links ul li {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  width: 100%;
+}
+
+.footer__links ul li img {
+  width: 22px;
+}
+
+.footer__links ul li h5 {
+  font-size: 11px;
+  color: #140f26;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 15px;
+  margin: auto;
+  width: 22px;
+}

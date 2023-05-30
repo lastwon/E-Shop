@@ -1,4 +1,5 @@
 import Brands from "./components/Brands";
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Nav from "./components/Nav";
 import Products from "./components/Products";
@@ -12,6 +13,7 @@ function App() {
       <Hero />
       <Brands />
       <Products />
+      <Footer />
     </>
   );
 }
