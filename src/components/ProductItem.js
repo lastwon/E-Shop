@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { stripHtml } from "string-strip-html";
 
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -11,17 +11,21 @@ const ProductItem = ({ product }) => {
 
   const formatPrice = (price) => {
     const [integerPart, decimalPart] = price.toString().split(".");
-    return (
-      <>
-        <span>{integerPart}</span>
-        {decimalPart && (
-          <>
-            <span>.</span>
-            <sup className="product__price-decimal">{decimalPart}</sup>
-          </>
-        )}
-      </>
-    );
+    if (decimalPart === "00") {
+      return <span>{integerPart}</span>;
+    } else {
+      return (
+        <>
+          <span>{integerPart}</span>
+          {decimalPart && (
+            <>
+              <span>.</span>
+              <sup className="product__price-decimal">{decimalPart}</sup>
+            </>
+          )}
+        </>
+      );
+    }
   };
 
   return (
@@ -29,17 +33,17 @@ const ProductItem = ({ product }) => {
       <div className="image__container">
         <img
           className="product__image"
-          src={product.image}
-          alt={product.title}
+          src={product.image?.url}
+          alt={product.name}
         />
       </div>
       <div className="product__info">
-        <div className="product__category">
+        {/*<div className="product__category">
           <img src={greenCircle} alt="green-circle" />
           <span>{product.category}</span>
-        </div>
+  </div>*/}
         <div className="product__name">
-          <a href="">{product.title}</a>
+          <a href="">{product.name}</a>
         </div>
       </div>
       <div className="product__general">
@@ -60,9 +64,10 @@ const ProductItem = ({ product }) => {
       <div className="product__price">
         <img src={priceFront} alt="price-front" />
         <div className="product__mid__price">
-          <span>{formatPrice(product.price)} €</span>
+          <span>{formatPrice(product.price.raw)} €</span>
         </div>
       </div>
+      <div className="little-spacer"></div>
     </div>
   );
 };

@@ -1,5 +1,9 @@
 @import "index.css";
 
+.little-spacer {
+  height: var(--little-spacer);
+}
+
 .spacer {
   height: var(--spacer);
 }
@@ -29,8 +33,9 @@
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 25px;
-  background: #f9f7f7;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
 }
 
 .product__card {
@@ -50,6 +55,7 @@
   box-sizing: border-box;
   border-radius: 7px;
   margin-bottom: 10px;
+  background-color: #f9f7f7;
 }
 
 .image__container img {
@@ -63,6 +69,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  mix-blend-mode: multiply;
 }
 
 .product__info {
