@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { commerce } from "../lib/commerce";
 
 import ProductsList from "./ProductsList";
 
@@ -18,11 +17,9 @@ const Products = () => {
    * https://commercejs.com/docs/sdk/products
    */
   const fetchProducts = () => {
-    commerce.products
-      .list()
-      .then((products) => {
-        setProducts(products.data);
-      })
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setProducts(json))
       .catch((error) => {
         console.log("There was an error fetching the products", error);
       });
