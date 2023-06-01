@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { stripHtml } from "string-strip-html";
 
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -39,10 +39,12 @@ const ProductItem = ({ product }) => {
         />
       </div>
       <div className="product__info">
-        {/*<div className="product__category">
-          <img src={greenCircle} alt="green-circle" />
-          <span>{product.category}</span>
-  </div>*/}
+        {product.categories.map((category) => (
+          <div key={category.id} className="product__category">
+            <img src={greenCircle} alt="green-circle" />
+            <span>{category.name}</span>
+          </div>
+        ))}
         <div className="product__name">
           <a href="">{product.name}</a>
         </div>

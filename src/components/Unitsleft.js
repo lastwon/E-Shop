@@ -25,7 +25,7 @@ const Unitsleft = ({ product }) => {
 
   if (stockLevel === null) {
     return (
-      <div className="stock">
+      <div className="stock red">
         <BsFillExclamationCircleFill
           style={{ height: "100%", width: "auto", paddingRight: "5px" }}
         />
