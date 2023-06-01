@@ -43,7 +43,7 @@
   height: 287px;
 }
 
-ul {
+.category ul {
   display: flex;
   list-style: none;
   padding: 0;
@@ -51,7 +51,7 @@ ul {
   height: 113px;
 }
 
-ul li {
+.category ul li {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,17 +65,17 @@ ul li {
   flex-wrap: wrap;
 }
 
-ul li a {
+.category ul li a {
   width: 100%;
   height: 100%;
   color: #140f26;
 }
 
-ul li a:hover {
+.category ul li a:hover {
   text-decoration: underline;
 }
 
-ul li h6 {
+.category ul li h6 {
   width: 90%;
   margin: 0 auto;
 }
