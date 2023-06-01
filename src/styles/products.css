@@ -129,6 +129,21 @@
   color: #212121;
 }
 
+.stock {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding-right: 15px;
+  padding-bottom: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #212121;
+}
+
+.red {
+  color: #ff2b5e;
+}
+
 .product__price {
   display: flex;
   height: 40px;

@@ -5,6 +5,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
 import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
+import Unitsleft from "./Unitsleft";
 
 const ProductItem = ({ product }) => {
   const { result } = stripHtml(product.description);
@@ -60,6 +61,7 @@ const ProductItem = ({ product }) => {
           />
           <span>0-2 W/D</span>
         </div>
+        <Unitsleft product={product} />
       </div>
       <div className="product__price">
         <img src={priceFront} alt="price-front" />
