@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import "../styles/nav.css";
 
@@ -9,8 +10,11 @@ import { BiUser } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHelpCircle } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
+import { BiLogOut } from "react-icons/bi";
 
 const Nav = () => {
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
   return (
     <nav>
       <a className="burger" href="">
@@ -37,20 +41,36 @@ const Nav = () => {
         </button>
       </form>
       <div className="reg-login">
-        <a href="">
-          <BiUser
-            style={{
-              width: "32px",
-              height: "auto",
-              padding: "8px 5px 10px 5px",
-              color: "#212121",
-            }}
-          />
-          <span className="register">
-            <span>Registration</span>
-            <span>Login</span>
-          </span>
-        </a>
+        {!isAuthenticated ? (
+          <button onClick={() => loginWithRedirect()}>
+            <BiUser
+              style={{
+                width: "32px",
+                height: "auto",
+                padding: "8px 5px 10px 5px",
+                color: "#212121",
+              }}
+            />
+            <span className="register">
+              <span>Registration</span>
+              <span>Login</span>
+            </span>
+          </button>
+        ) : (
+          <button onClick={() => logout()}>
+            <BiLogOut
+              style={{
+                width: "32px",
+                height: "auto",
+                padding: "8px 5px 10px 5px",
+                color: "#212121",
+              }}
+            />
+            <span className="register">
+              <span>Logout</span>
+            </span>
+          </button>
+        )}
       </div>
       <div className="wishlist-container">
         <a href="">

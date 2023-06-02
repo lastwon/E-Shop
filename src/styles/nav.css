@@ -85,12 +85,19 @@ nav {
   padding: 5px 15px 0 15px;
 }
 
-.reg-login a,
+.reg-login button,
 .wishlist-container a,
 .help-container a,
 .shopping-container a {
   display: flex;
   align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.reg-login button:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .register,
