@@ -88,7 +88,8 @@ nav {
 .reg-login button,
 .wishlist-container a,
 .help-container a,
-.shopping-container a {
+.shopping-container a,
+.shopping-container button {
   display: flex;
   align-items: center;
   border: none;
@@ -96,6 +97,11 @@ nav {
 }
 
 .reg-login button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.shopping-container button:hover {
   text-decoration: underline;
   cursor: pointer;
 }

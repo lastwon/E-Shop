@@ -1,5 +1,6 @@
-import React from "react";
-import { stripHtml } from "string-strip-html";
+import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { commerce } from "../lib/commerce";
 
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
@@ -8,7 +9,36 @@ import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
 
 const ProductItem = ({ product }) => {
-  const { result } = stripHtml(product.description);
+  const { isAuthenticated } = useAuth0();
+
+  // Function to retrieve or create a cart
+  const getOrCreateCart = async () => {
+    try {
+      await commerce.cart.retrieve().then((cart) => console.log(cart));
+    } catch (error) {
+      // Handle any errors that occur
+      console.error("Error retrieving or creating cart:", error);
+    }
+  };
+
+  // Function to add a product to the cart
+  const addToCart = async (productId, quantity) => {
+    try {
+      // Add the product to the cart
+      commerce.cart
+        .add(productId, quantity)
+        .then((response) => console.log(response));
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+
+  // Usage: Retrieve or create a cart and add a product to it
+  const initialize = async () => {
+    // Retrieve or create a cart
+    const cart = await getOrCreateCart();
+    addToCart(product.id, 1);
+  };
 
   const formatPrice = (price) => {
     const [integerPart, decimalPart] = price.toString().split(".");
@@ -69,6 +99,7 @@ const ProductItem = ({ product }) => {
         <img src={priceFront} alt="price-front" />
         <div className="product__mid__price">
           <span>{formatPrice(product.price.raw)} €</span>
+          <button onClick={() => initialize()}>Add to cart</button>
         </div>
       </div>
     </div>

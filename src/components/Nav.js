@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 import "../styles/nav.css";
 
@@ -23,12 +24,12 @@ const Nav = () => {
         />
         <span>All products</span>
       </a>
-      <a className="logo" href="">
+      <Link className="logo" to="/">
         <AiFillShopping
           style={{ width: "25px", height: "25px", marginRight: "4.3px" }}
         />
         <span>Shope</span>
-      </a>
+      </Link>
       <form className="search-container" method="GET" action="/search/">
         <input
           className="search-bar"
@@ -73,7 +74,7 @@ const Nav = () => {
         )}
       </div>
       <div className="wishlist-container">
-        <a href="">
+        <Link to="goods">
           <AiOutlineHeart
             style={{
               width: "32px",
@@ -86,7 +87,7 @@ const Nav = () => {
             <span>Liked</span>
             <span>Goods</span>
           </span>
-        </a>
+        </Link>
       </div>
       <div className="help-container">
         <a href="">
@@ -105,7 +106,7 @@ const Nav = () => {
         </a>
       </div>
       <div className="shopping-container">
-        <a href="">
+        <Link to="/cart">
           <BsCart
             style={{
               width: "32px",
@@ -118,7 +119,7 @@ const Nav = () => {
             <span>Shopping</span>
             <span>Cart</span>
           </span>
-        </a>
+        </Link>
       </div>
     </nav>
   );

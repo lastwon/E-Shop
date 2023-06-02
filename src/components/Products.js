@@ -22,6 +22,7 @@ const Products = () => {
       .list()
       .then((products) => {
         setProducts(products.data);
+        console.log(products.data);
       })
       .catch((error) => {
         console.log("There was an error fetching the products", error);
