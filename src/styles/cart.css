@@ -30,11 +30,38 @@
 }
 
 .cart__details {
-  display: flex;
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
   align-items: center;
   padding: 0 25px;
 }
 
+.img__AndName {
+  display: flex;
+  align-items: center;
+}
+
 .cart__name {
-  width: 40%;
+  width: 100%;
+}
+
+.cart__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 500;
+}
+
+.cart__price button {
+  background-color: transparent;
+  border: 1px solid #79852a;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.cart__subtotal {
+  font-weight: 500;
+  text-align: end;
 }
