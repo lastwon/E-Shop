@@ -4,13 +4,13 @@
   display: block;
   font-size: 17px;
   background-color: #fff;
-  padding: 25px 10px;
+  padding: 25px 25px;
   font-weight: bold;
 }
 
 .cart__item {
   width: 100%;
-  padding: 25px 25px;
+  padding: 25px 0px;
   background-color: #fff;
 }
 
@@ -30,8 +30,9 @@
 }
 
 .cart__details {
+  position: relative;
   display: grid;
-  grid-template-columns: 60% 20% 20%;
+  grid-template-columns: 65% 15% 15% 5%;
   align-items: center;
   padding: 0 25px;
 }
@@ -48,7 +49,7 @@
 .cart__price {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 20px;
   font-weight: 500;
 }
@@ -63,5 +64,46 @@
 
 .cart__subtotal {
   font-weight: 500;
-  text-align: end;
+  text-align: right;
+}
+
+.cart__remove__item {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  text-indent: 9999px;
+  background: #000;
+  border-radius: 50%;
+  border: none;
+  right: 3%;
+  margin: 0 0 0 18px;
+  cursor: pointer;
+}
+
+.cart__remove__item::before {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 20%;
+  bottom: 45%;
+  z-index: 2;
+}
+
+.cart__remove__item::after {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: 20%;
+  bottom: 45%;
+  z-index: 2;
+}
+
+button {
+  cursor: pointer;
 }
