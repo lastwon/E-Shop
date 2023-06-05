@@ -16,6 +16,7 @@ import Products from "./components/Products";
 import "./styles/index.css";
 import LikedGoods from "./components/LikedGoods";
 import Cart from "./components/Cart";
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,17 +34,15 @@ function App() {
     },
     {
       path: "/goods",
-      element: (
-        <>
-          <Nav />
-          <LikedGoods />
-          <Footer />
-        </>
-      ),
+      element: <LikedGoods />,
     },
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/:productName",
+      element: <ProductDetails />,
     },
   ]);
 

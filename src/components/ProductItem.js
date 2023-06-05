@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { commerce } from "../lib/commerce";
 import Notification from "./Notification";
@@ -71,11 +72,13 @@ const ProductItem = ({ product }) => {
   return (
     <div className="product__card">
       <div className="image__container">
-        <img
-          className="product__image"
-          src={product.image?.url}
-          alt={product.name}
-        />
+        <Link to={`/${product.id}`}>
+          <img
+            className="product__image"
+            src={product.image?.url}
+            alt={product.name}
+          />
+        </Link>
       </div>
       <div className="product__info">
         {product.categories.map((category) => (
