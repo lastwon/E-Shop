@@ -1,5 +1,40 @@
 @import "index.css";
 
+.cart__content {
+  display: flex;
+}
+
+.cart__info {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  font-size: 21px;
+  font-weight: 400;
+  padding: 50px;
+}
+
+.cart__info span:last-of-type {
+  margin-top: 12px;
+  margin-bottom: 25px;
+}
+
+.button__box a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  gap: 15px;
+  background: #daf536;
+  font-weight: normal;
+  box-shadow: 0px 1px 0px 0px #b9d828;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 45px;
+  text-decoration: none;
+  color: #000;
+}
+
 .cart__title {
   display: block;
   font-size: 17px;
@@ -32,9 +67,24 @@
 .cart__details {
   position: relative;
   display: grid;
-  grid-template-columns: 65% 15% 15% 5%;
+  grid-template-columns: 60% 20% 15% 5%;
   align-items: center;
-  padding: 0 25px;
+  padding: 25px 25px;
+}
+
+.cart__details::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: #ebebee;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.cart__details:last-of-type::after {
+  width: 0;
 }
 
 .img__AndName {
@@ -56,10 +106,16 @@
 
 .cart__price button {
   background-color: transparent;
-  border: 1px solid #79852a;
+  border: 1px solid #d5deb7;
+  font-size: 16px;
   width: 28px;
   height: 28px;
+  font-weight: bold;
   border-radius: 50%;
+}
+
+.cart__price button:hover {
+  border: 1px solid #79852a;
 }
 
 .cart__subtotal {

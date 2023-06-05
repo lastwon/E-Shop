@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { commerce } from "../lib/commerce";
+import Notification from "./Notification";
 
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
@@ -10,24 +11,22 @@ import Unitsleft from "./Unitsleft";
 
 const ProductItem = ({ product }) => {
   const { isAuthenticated } = useAuth0();
+  const [notification, setNotification] = useState("");
 
-  // Function to retrieve or create a cart
   const getOrCreateCart = async () => {
     try {
-      await commerce.cart.retrieve().then((cart) => console.log(cart));
+      const cart = await commerce.cart.retrieve();
+      console.log(cart);
     } catch (error) {
-      // Handle any errors that occur
       console.error("Error retrieving or creating cart:", error);
     }
   };
 
-  // Function to add a product to the cart
   const addToCart = async (productId, quantity) => {
     try {
-      // Add the product to the cart
-      commerce.cart
-        .add(productId, quantity)
-        .then((response) => console.log(response));
+      const response = await commerce.cart.add(productId, quantity);
+      console.log(response);
+      setNotification("Added to the cart!");
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -58,6 +57,16 @@ const ProductItem = ({ product }) => {
       );
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (notification) {
+      timer = setTimeout(() => {
+        setNotification("");
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [notification]);
 
   return (
     <div className="product__card">
@@ -99,9 +108,14 @@ const ProductItem = ({ product }) => {
         <img src={priceFront} alt="price-front" />
         <div className="product__mid__price">
           <span>{formatPrice(product.price.raw)} €</span>
-          <button onClick={() => initialize()}>Add to cart</button>
         </div>
+        {!isAuthenticated ? (
+          ""
+        ) : (
+          <button onClick={() => initialize()}>+</button>
+        )}
       </div>
+      {notification && <Notification notification={notification} />}
     </div>
   );
 };

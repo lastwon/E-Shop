@@ -43,7 +43,6 @@ const CartItem = ({
           );
         })}
       </div>
-      <div className="spacer"></div>
     </>
   );
 };

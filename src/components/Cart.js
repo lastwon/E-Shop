@@ -5,15 +5,25 @@ import "../styles/cart.css";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import CartItem from "./CartItem";
+import CartCheckout from "./CartCheckout";
+import Notification from "./Notification";
 
 const Cart = () => {
   const [cart, setCart] = useState(null);
   const [loadingItems, setLoadingItems] = useState([]);
   const [loadingCart, setLoadingCart] = useState(false);
+  const [notification, setNotification] = useState("");
 
   useEffect(() => {
     handleUpdateCart();
-  }, []);
+    let timer;
+    if (notification) {
+      timer = setTimeout(() => {
+        setNotification("");
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [notification]);
 
   const handleUpdateCart = async () => {
     setLoadingCart(true);
@@ -31,6 +41,7 @@ const Cart = () => {
     try {
       await commerce.cart.update(line_item_id, { quantity: item_quantity - 1 });
       handleUpdateCart();
+      setNotification("Successfully updated!");
     } catch (error) {
       console.error("Error subtracting item from cart", error);
     } finally {
@@ -45,6 +56,7 @@ const Cart = () => {
     try {
       await commerce.cart.update(line_item_id, { quantity: item_quantity + 1 });
       handleUpdateCart();
+      setNotification("Successfully updated!");
     } catch (error) {
       console.error("Error adding item to cart", error);
     } finally {
@@ -59,6 +71,7 @@ const Cart = () => {
     try {
       await commerce.cart.remove(line_item_id);
       handleUpdateCart();
+      setNotification("Product successfully removed!");
     } catch (error) {
       console.error("Error removing item from cart", error);
     } finally {
@@ -73,15 +86,22 @@ const Cart = () => {
       <Nav />
       <div className="main-container">
         <div className="spacer"></div>
-        {cart && (
-          <CartItem
-            cart={cart}
-            handleSubtract={handleSubtract}
-            handleAdd={handleAdd}
-            handleRemove={handleRemoveFromCart}
-            loadingItems={loadingItems}
-          />
-        )}
+        <div className="cart__content">
+          {cart && (
+            <CartItem
+              cart={cart}
+              handleSubtract={handleSubtract}
+              handleAdd={handleAdd}
+              handleRemove={handleRemoveFromCart}
+              loadingItems={loadingItems}
+            />
+          )}
+          <div className="cart__checkout">
+            {cart && <CartCheckout cart={cart} />}
+            {notification && <Notification notification={notification} />}
+          </div>
+        </div>
+        <div className="spacer"></div>
       </div>
       <Footer />
     </>

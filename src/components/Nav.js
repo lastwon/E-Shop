@@ -106,20 +106,37 @@ const Nav = () => {
         </a>
       </div>
       <div className="shopping-container">
-        <Link to="/cart">
-          <BsCart
-            style={{
-              width: "32px",
-              height: "auto",
-              padding: "8px 5px 10px 5px",
-              color: "#212121",
-            }}
-          />
-          <span className="cart-text">
-            <span>Shopping</span>
-            <span>Cart</span>
-          </span>
-        </Link>
+        {!isAuthenticated ? (
+          <button onClick={() => loginWithRedirect()}>
+            <BsCart
+              style={{
+                width: "32px",
+                height: "auto",
+                padding: "8px 5px 10px 5px",
+                color: "#212121",
+              }}
+            />
+            <span className="cart-text">
+              <span>Shopping</span>
+              <span>Cart</span>
+            </span>
+          </button>
+        ) : (
+          <Link to="/cart">
+            <BsCart
+              style={{
+                width: "32px",
+                height: "auto",
+                padding: "8px 5px 10px 5px",
+                color: "#212121",
+              }}
+            />
+            <span className="cart-text">
+              <span>Shopping</span>
+              <span>Cart</span>
+            </span>
+          </Link>
+        )}
       </div>
     </nav>
   );
