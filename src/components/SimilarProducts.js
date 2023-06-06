@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+
+import "../styles/products.css";
 
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
@@ -8,30 +10,11 @@ import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
 import Stock from "./Stock";
 
-const SimilarProducts = ({ product }) => {
+const SimilarProducts = ({ product, formatPrice }) => {
   const { related_products } = product;
 
-  const formatPrice = (price) => {
-    const [integerPart, decimalPart] = price.toString().split(".");
-    if (decimalPart === "00") {
-      return <span>{integerPart}</span>;
-    } else {
-      return (
-        <>
-          <span>{integerPart}</span>
-          {decimalPart && (
-            <>
-              <span>.</span>
-              <sup className="product__price-decimal">{decimalPart}</sup>
-            </>
-          )}
-        </>
-      );
-    }
-  };
-
   return (
-    <>
+    <div className="products" id="products">
       {related_products.map((related) => (
         <div key={related.id} className="product__card">
           <div className="image__container">
@@ -52,13 +35,21 @@ const SimilarProducts = ({ product }) => {
             <div className="rating">
               <AiFillStar
                 className="star"
-                style={{ height: "100%", width: "auto", paddingRight: "5px" }}
+                style={{
+                  height: "100%",
+                  width: "auto",
+                  paddingRight: "5px",
+                }}
               />
               <span>0.0</span>
             </div>
             <div className="delivery">
               <CiDeliveryTruck
-                style={{ height: "100%", width: "auto", paddingRight: "5px" }}
+                style={{
+                  height: "100%",
+                  width: "auto",
+                  paddingRight: "5px",
+                }}
               />
               <span>0-2 W/D</span>
             </div>
@@ -72,7 +63,7 @@ const SimilarProducts = ({ product }) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
