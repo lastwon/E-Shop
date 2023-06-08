@@ -5,7 +5,9 @@ import greenCircle from "../images/green-circle.svg";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
 import priceFront from "../images/priceFront.svg";
+import { BsCart } from "react-icons/bs";
 import Unitsleft from "./Unitsleft";
+import Notification from "./Notification";
 
 import "../styles/productDetail.css";
 
@@ -16,24 +18,25 @@ import SimilarProducts from "./SimilarProducts";
 const ProductDetails = () => {
   const params = useParams();
   const [productInfo, setProductInfo] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [notification, setNotification] = useState("");
 
   const formatPrice = (price) => {
-    const [integerPart, decimalPart] = price.toString().split(".");
-    if (decimalPart === "00") {
-      return <span>{integerPart}</span>;
-    } else {
-      return (
-        <>
-          <span>{integerPart}</span>
-          {decimalPart && (
-            <>
-              <span>.</span>
-              <sup className="product__price-decimal">{decimalPart}</sup>
-            </>
-          )}
-        </>
-      );
-    }
+    const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
+    const [integerPart, decimalPart] = formattedPrice.split(".");
+
+    return (
+      <>
+        <span>{integerPart}</span>
+        {decimalPart !== "00" && (
+          <>
+            <span>.</span>
+            <sup className="product__price-decimal">{decimalPart}</sup>
+          </>
+        )}
+      </>
+    );
   };
 
   const getProduct = async () => {
@@ -53,9 +56,69 @@ const ProductDetails = () => {
     return plainText;
   };
 
+  const handlePrice = (e) => {
+    const inputValue = parseInt(e.target.value);
+
+    if (!isNaN(inputValue)) {
+      let newQuantity = inputValue;
+
+      if (newQuantity < 1) {
+        newQuantity = 1;
+      } else if (productInfo && newQuantity > productInfo.inventory.available) {
+        newQuantity = productInfo.inventory.available;
+      }
+
+      setQuantity(newQuantity);
+      setPrice(newQuantity * productInfo.price.raw);
+    } else {
+      setQuantity();
+      setPrice(0);
+    }
+  };
+
+  const incrementQuantity = () => {
+    if (quantity < productInfo.inventory.available) {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+      setPrice((prevPrice) => (quantity + 1) * productInfo.price.raw);
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      setPrice((prevPrice) => (quantity - 1) * productInfo.price.raw);
+    }
+  };
+
+  const addToCart = async (productId, quantity) => {
+    try {
+      const response = await commerce.cart.add(productId, quantity);
+      console.log(response);
+      setNotification("Added to the cart!");
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+
   useEffect(() => {
     getProduct();
   }, []);
+
+  useEffect(() => {
+    if (productInfo) {
+      setPrice(productInfo.price.raw);
+    }
+  }, [productInfo]);
+
+  useEffect(() => {
+    let timer;
+    if (notification) {
+      timer = setTimeout(() => {
+        setNotification("");
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [notification]);
 
   return (
     <>
@@ -104,16 +167,77 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="current__product__pay">
-              <div className="product__price">
-                <img src={priceFront} alt="price-front" />
-                <div className="product__mid__price">
-                  <span>{formatPrice(productInfo.price.raw)} €</span>
+              <div className="product__both__prices">
+                <div className="product__price">
+                  <img src={priceFront} alt="price-front" />
+                  <div className="product__mid__price">
+                    <span>{formatPrice(productInfo.price.raw)} €</span>
+                  </div>
+                </div>
+                <div className="product__leasing__price">
+                  <span className="leasing__text">
+                    Leasing without increase
+                  </span>
+                  <span>
+                    <b>
+                      {formatPrice(productInfo.price.raw / 10)} € x 10 months
+                    </b>
+                  </span>
+                  <span className="product__or">or</span>
                 </div>
               </div>
+              <hr />
+              <div className="select__quantity">
+                <span className="quantity__text">Select quantity</span>
+                <div className="number__input">
+                  <button
+                    className="quantity__down"
+                    onClick={decrementQuantity}
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    className="quantity"
+                    min={1}
+                    max={productInfo.inventory.available}
+                    value={quantity}
+                    onChange={handlePrice}
+                  />
+                  <button className="quantity__up" onClick={incrementQuantity}>
+                    +
+                  </button>
+                </div>
+              </div>
+              <button
+                onClick={() => addToCart(productInfo.id, quantity)}
+                className="add__to__cart"
+              >
+                <BsCart
+                  style={{
+                    width: "25px",
+                    height: "auto",
+                    color: "#fff",
+                  }}
+                />
+                Add to cart <b>{price} €</b>
+              </button>
+              {notification && <Notification notification={notification} />}
             </div>
           </div>
           <div className="spacer"></div>
           <div className="similar__goods">
+            <div className="description">
+              <h3
+                style={{
+                  paddingLeft: "20px",
+                  paddingTop: "20px",
+                  background: "#fff",
+                }}
+              >
+                Similar goods
+              </h3>
+            </div>
             <SimilarProducts formatPrice={formatPrice} product={productInfo} />
           </div>
         </div>

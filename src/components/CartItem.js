@@ -1,4 +1,6 @@
 import React from "react";
+import { commerce } from "../lib/commerce";
+
 import "../styles/cart.css";
 
 const CartItem = ({
@@ -9,6 +11,16 @@ const CartItem = ({
   loadingItems,
 }) => {
   const { line_items } = cart;
+
+  const handleAddItem = async (itemId, productId, currentQuantity) => {
+    const currentProduct = await commerce.products.retrieve(productId);
+    const { inventory } = currentProduct;
+    if (currentQuantity < inventory.available) {
+      handleAdd(itemId, currentQuantity);
+    } else {
+      console.log("cant add more items");
+    }
+  };
 
   return (
     <>
@@ -30,7 +42,11 @@ const CartItem = ({
                   -
                 </button>
                 {isLoading ? "Loading" : item.quantity}
-                <button onClick={() => handleAdd(item.id, item.quantity)}>
+                <button
+                  onClick={() =>
+                    handleAddItem(item.id, item.product_id, item.quantity)
+                  }
+                >
                   +
                 </button>
               </span>

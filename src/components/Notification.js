@@ -6,9 +6,9 @@ import "../styles/products.css";
 const Notification = ({ notification }) => {
   return (
     <>
-      <div class="notification">
-        <div class="notification-container">
-          <p class="notification-text">
+      <div className="notification">
+        <div className="notification-container">
+          <p className="notification-text">
             <strong>
               <AiOutlineCheckCircle style={{ width: "25px", height: "25px" }} />{" "}
               {notification}

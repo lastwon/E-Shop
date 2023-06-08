@@ -42,7 +42,6 @@ const Countdown = () => {
           )}:${formatTime(seconds)}`}
         </div>
       </div>
-      <div className="spacer"></div>
     </>
   );
 };

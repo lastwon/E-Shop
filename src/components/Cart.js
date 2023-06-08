@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { commerce } from "../lib/commerce";
 import "../styles/cart.css";
 
@@ -9,21 +10,17 @@ import CartCheckout from "./CartCheckout";
 import Notification from "./Notification";
 
 const Cart = () => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const [cart, setCart] = useState(null);
   const [loadingItems, setLoadingItems] = useState([]);
   const [loadingCart, setLoadingCart] = useState(false);
   const [notification, setNotification] = useState("");
 
   useEffect(() => {
-    handleUpdateCart();
-    let timer;
-    if (notification) {
-      timer = setTimeout(() => {
-        setNotification("");
-      }, 4000);
+    if (isAuthenticated) {
+      handleUpdateCart();
     }
-    return () => clearTimeout(timer);
-  }, [notification]);
+  }, [isAuthenticated]);
 
   const handleUpdateCart = async () => {
     setLoadingCart(true);
@@ -32,8 +29,9 @@ const Cart = () => {
       setCart(cartData);
     } catch (error) {
       console.error("Error updating cart", error);
+    } finally {
+      setLoadingCart(false);
     }
-    setLoadingCart(false);
   };
 
   const handleSubtract = async (line_item_id, item_quantity) => {
@@ -80,6 +78,20 @@ const Cart = () => {
       );
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (notification) {
+      timer = setTimeout(() => {
+        setNotification("");
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [notification]);
+
+  if (!isAuthenticated) {
+    return loginWithRedirect();
+  }
 
   return (
     <>
