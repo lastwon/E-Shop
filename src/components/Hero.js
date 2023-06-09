@@ -15,84 +15,97 @@ import { MdOutlineToys } from "react-icons/md";
 import { GiClothes } from "react-icons/gi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Slides from "./Slides";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const style = {
     color: "#212121",
     fontSize: "45px",
   };
-  const category = [
+  const categorys = [
     {
       id: 1,
       icon: <MdOutlineDiscount style={style} />,
       title: "Discounts",
       background: "#FAE2CA",
+      category: "discounts",
     },
     {
       id: 2,
       icon: <TbDiscount style={style} />,
       title: "Sale",
       background: "#F3D3C8",
+      category: "sale",
     },
     {
       id: 3,
       icon: <GiSmartphone style={style} />,
       title: "Phones, foto and video",
       background: "#F3E2B6",
+      category: "phones",
     },
     {
       id: 4,
       icon: <MdComputer style={style} />,
       title: "Computers and components",
       background: "#CBE9C3",
+      category: "computers",
     },
     {
       id: 5,
       icon: <GiLockers style={style} />,
       title: "Electronics",
       background: "#D1D7ED",
+      category: "electronics",
     },
     {
       id: 6,
       icon: <TbPerfume style={style} />,
       title: "Perfumes and cosmetics",
       background: "#E1BFCD",
+      category: "perfumes",
     },
     {
       id: 7,
       icon: <GiGardeningShears style={style} />,
       title: "Garden goods, tools",
       background: "#EEDCDC",
+      category: "garden",
     },
     {
       id: 8,
       icon: <TbSofa style={style} />,
       title: "Furniture and home interior",
       background: "#F3D3C8",
+      category: "furniture",
     },
     {
       id: 9,
       icon: <BiBasketball style={style} />,
       title: "Sports, free time",
       background: "#FAE2CA",
+      category: "sports",
     },
     {
       id: 10,
       icon: <MdOutlineToys style={style} />,
       title: "Toys",
       background: "#DFE9E0",
+      category: "toys",
     },
     {
       id: 11,
       icon: <GiClothes style={style} />,
       title: "Clothing, footwear",
       background: "#DCEEF0",
+      category: "footwear",
     },
     {
       id: 12,
       icon: <RxHamburgerMenu style={style} />,
       title: "All categories",
       background: "#F1E6DB",
+      category: "discounts",
     },
   ];
   return (
@@ -100,15 +113,15 @@ const Hero = () => {
       <Slides />
       <div className="category">
         <ul>
-          {category.map((categ) => (
+          {categorys.map((categ) => (
             <li
               key={categ.id}
               style={{ backgroundColor: `${categ.background}` }}
             >
-              <a href="">
+              <Link to={`/category/${categ.category}`}>
                 {categ.icon}
                 <h6>{categ.title}</h6>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

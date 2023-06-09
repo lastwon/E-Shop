@@ -15,10 +15,12 @@
   background-color: #fff;
 }
 
-.countdown span {
+.countdown span,
+.category__title {
   font-size: 26px;
   font-weight: bold;
   padding: 20px;
+  background-color: #fff;
 }
 
 .timmer {

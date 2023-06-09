@@ -17,6 +17,7 @@ import "./styles/index.css";
 import LikedGoods from "./components/LikedGoods";
 import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
+import ProductCategory from "./components/ProductCategory";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +44,10 @@ function App() {
     {
       path: "/:productName",
       element: <ProductDetails />,
+    },
+    {
+      path: "/category/:productCategory",
+      element: <ProductCategory />,
     },
   ]);
 
