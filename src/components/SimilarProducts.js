@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { commerce } from "../lib/commerce";
 import { Link } from "react-router-dom";
 
 import "../styles/products.css";
@@ -12,13 +13,36 @@ import Stock from "./Stock";
 
 const SimilarProducts = ({ product, formatPrice }) => {
   const { related_products } = product;
+  const [productInfo, setProductInfo] = useState([]);
+
+  const fetchProductData = async () => {
+    try {
+      const productsWithVariations = await Promise.all(
+        related_products.map(async (related) => {
+          const fetchedProduct = await commerce.products.retrieve(related.id);
+          const productWithVariations = {
+            ...related,
+            variations: fetchedProduct.variant_groups,
+          };
+          return productWithVariations;
+        })
+      );
+      setProductInfo(productsWithVariations);
+    } catch (error) {
+      console.error("Error retrieving product:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductData();
+  }, []);
 
   return (
     <div className="products" id="products">
-      {related_products.map((related) => (
+      {productInfo.map((related) => (
         <div key={related.id} className="product__card">
           <div className="image__container">
-            <Link to={`/${product.id}`}>
+            <Link to={`/${related.id}`}>
               <img
                 className="product__image"
                 src={related.image?.url}
@@ -27,9 +51,22 @@ const SimilarProducts = ({ product, formatPrice }) => {
             </Link>
           </div>
           <div className="product__info">
-            <div key={related.id} className="product__name">
+            <div className="product__name">
               <a href="">{related.name}</a>
             </div>
+            {/* Render variations */}
+            {related.variations && (
+              <div className="product__variation">
+                <ul className="variation__list">
+                  {related.variations.map((variation) => (
+                    <li key={variation.id}>
+                      {variation.name}
+                      <span>{variation.options[0].name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <div className="product__general">
             <div className="rating">

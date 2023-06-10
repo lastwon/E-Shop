@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import { commerce } from "../lib/commerce";
-import Notification from "./Notification";
 
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
@@ -11,34 +9,7 @@ import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
 
 const ProductItem = ({ product }) => {
-  const { isAuthenticated } = useAuth0();
-  const [notification, setNotification] = useState("");
-
-  const getOrCreateCart = async () => {
-    try {
-      const cart = await commerce.cart.retrieve();
-      console.log(cart);
-    } catch (error) {
-      console.error("Error retrieving or creating cart:", error);
-    }
-  };
-
-  const addToCart = async (productId, quantity) => {
-    try {
-      const response = await commerce.cart.add(productId, quantity);
-      console.log(response);
-      setNotification("Added to the cart!");
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-    }
-  };
-
-  // Usage: Retrieve or create a cart and add a product to it
-  const initialize = async () => {
-    // Retrieve or create a cart
-    const cart = await getOrCreateCart();
-    addToCart(product.id, 1);
-  };
+  const [productInfo, setProductInfo] = useState({});
 
   const formatPrice = (price) => {
     const [integerPart, decimalPart] = price.toString().split(".");
@@ -59,15 +30,22 @@ const ProductItem = ({ product }) => {
     }
   };
 
-  useEffect(() => {
-    let timer;
-    if (notification) {
-      timer = setTimeout(() => {
-        setNotification("");
-      }, 4000);
+  const fetchProductData = async () => {
+    try {
+      const fetchedProduct = await commerce.products.retrieve(product.id);
+      const productWithVariations = {
+        ...product,
+        variations: fetchedProduct.variant_groups,
+      };
+      setProductInfo([productWithVariations]);
+    } catch (error) {
+      console.error("Error retrieving product:", error);
     }
-    return () => clearTimeout(timer);
-  }, [notification]);
+  };
+
+  useEffect(() => {
+    fetchProductData();
+  }, []);
 
   return (
     <div className="product__card">
@@ -89,6 +67,17 @@ const ProductItem = ({ product }) => {
         ))}
         <div className="product__name">
           <a href="">{product.name}</a>
+        </div>
+        <div className="product__variation">
+          <ul className="variation__list">
+            {productInfo.length > 0 &&
+              productInfo[0].variations.map((variation) => (
+                <li key={variation.id}>
+                  {variation.name}
+                  <span>{variation.options[0].name}</span>
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
       <div className="product__general">
@@ -112,13 +101,7 @@ const ProductItem = ({ product }) => {
         <div className="product__mid__price">
           <span>{formatPrice(product.price.raw)} €</span>
         </div>
-        {!isAuthenticated ? (
-          ""
-        ) : (
-          <button onClick={() => initialize()}>+</button>
-        )}
       </div>
-      {notification && <Notification notification={notification} />}
     </div>
   );
 };

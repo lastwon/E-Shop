@@ -47,7 +47,6 @@ const ProductCategory = () => {
           category_slug: [params.productCategory],
         });
         setProduct(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log("Error retrieving products:", error);
       }

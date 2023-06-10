@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { commerce } from "../lib/commerce";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -7,6 +8,8 @@ import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
 
 const ProductCategoryCurrent = ({ product }) => {
+  const [productInfo, setProductInfo] = useState([]);
+
   const formatPrice = (price) => {
     const [integerPart, decimalPart] = price.toString().split(".");
     if (decimalPart === "00") {
@@ -26,9 +29,33 @@ const ProductCategoryCurrent = ({ product }) => {
     }
   };
 
+  const fetchProductData = async () => {
+    try {
+      const productsData = await Promise.all(
+        product.map(async (productItem) => {
+          const fetchedProduct = await commerce.products.retrieve(
+            productItem.id
+          );
+          return {
+            ...productItem,
+            variations: fetchedProduct.variant_groups,
+            // Add variations to the product item
+          };
+        })
+      );
+      setProductInfo(productsData);
+    } catch (error) {
+      console.error("Error retrieving products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProductData();
+  }, []);
+
   return (
     <>
-      {product.map((productItem) => (
+      {productInfo.map((productItem) => (
         <div className="product__card" key={productItem.id}>
           <div className="image__container">
             <Link to={`/${productItem.id}`}>
@@ -49,6 +76,17 @@ const ProductCategoryCurrent = ({ product }) => {
               ))}
             <div className="product__name">
               <a href="">{productItem.name}</a>
+            </div>
+            <div className="product__variation">
+              <ul className="variation__list">
+                {productItem.variations &&
+                  productItem.variations.map((variation) => (
+                    <li key={variation.id}>
+                      {variation.name}
+                      <span>{variation.options[0].name}</span>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
           <div className="product__general">

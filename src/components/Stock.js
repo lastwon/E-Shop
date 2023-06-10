@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CiDeliveryTruck } from "react-icons/ci";
+import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
 import { BsFillExclamationCircleFill } from "react-icons/bs";
 
 const Stock = ({ stockLevel }) => {
@@ -44,7 +44,7 @@ const Stock = ({ stockLevel }) => {
 
   return (
     <div className="stock">
-      <CiDeliveryTruck
+      <HiOutlineArchiveBoxArrowDown
         style={{ height: "100%", width: "auto", paddingRight: "5px" }}
       />
       <span>Left only: 5+ units</span>

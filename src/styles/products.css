@@ -98,6 +98,38 @@
   color: #140f26;
 }
 
+.product__variation {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+
+.variation__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 13px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.variation__list li span {
+  color: #027ea6;
+  font-weight: 500;
+  padding-left: 4px;
+}
+
+.variation__list li {
+  line-height: 20px;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 300;
+  color: #787171;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .product__general {
   display: flex;
   align-items: center;

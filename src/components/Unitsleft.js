@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { commerce } from "../lib/commerce";
 
-import { CiDeliveryTruck } from "react-icons/ci";
+import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
 import { BsFillExclamationCircleFill } from "react-icons/bs";
 
 import "../styles/products.css";
@@ -63,7 +63,7 @@ const Unitsleft = ({ product }) => {
 
   return (
     <div className="stock">
-      <CiDeliveryTruck
+      <HiOutlineArchiveBoxArrowDown
         style={{ height: "100%", width: "auto", paddingRight: "5px" }}
       />
       <span>Left only: 5+ units</span>
