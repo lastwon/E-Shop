@@ -14,6 +14,7 @@ import "../styles/productDetail.css";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import SimilarProducts from "./SimilarProducts";
+import Loader from "./Loader";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -21,6 +22,7 @@ const ProductDetails = () => {
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState("");
+  const [loader, setloader] = useState(false);
 
   const formatPrice = (price) => {
     const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
@@ -40,8 +42,10 @@ const ProductDetails = () => {
   };
 
   const getProduct = async () => {
+    setloader(true);
     try {
       const product = await commerce.products.retrieve(params.productName);
+      setloader(false);
       setProductInfo(product);
       console.log(product);
     } catch (error) {
@@ -123,6 +127,14 @@ const ProductDetails = () => {
   return (
     <>
       <Nav />
+      {loader && (
+        <>
+          <div className="spacer"></div>
+          <div className="loader">
+            <Loader />
+          </div>
+        </>
+      )}
       <div className="spacer"></div>
       {productInfo && (
         <div className="main-container">

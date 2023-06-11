@@ -12,12 +12,15 @@ import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
 import Stock from "./Stock";
+import Loader from "./Loader";
 
 const SimilarProducts = ({ product, formatPrice }) => {
   const { related_products } = product;
   const [productInfo, setProductInfo] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const fetchProductData = async () => {
+    setLoader(true);
     try {
       const productsWithVariations = await Promise.all(
         related_products.map(async (related) => {
@@ -26,6 +29,7 @@ const SimilarProducts = ({ product, formatPrice }) => {
             ...related,
             variations: fetchedProduct.variant_groups,
           };
+          setLoader(false);
           return productWithVariations;
         })
       );
@@ -41,6 +45,11 @@ const SimilarProducts = ({ product, formatPrice }) => {
 
   return (
     <div className="products" id="products">
+      {loader && (
+        <div className="loader">
+          <Loader />
+        </div>
+      )}
       <Splide
         className="product__slider"
         options={{ perPage: 4, gap: "15px", pagination: false, perMove: 1 }}

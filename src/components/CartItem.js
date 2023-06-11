@@ -2,6 +2,7 @@ import React from "react";
 import { commerce } from "../lib/commerce";
 
 import "../styles/cart.css";
+import Loader from "./Loader";
 
 const CartItem = ({
   cart,
@@ -41,7 +42,13 @@ const CartItem = ({
                 <button onClick={() => handleSubtract(item.id, item.quantity)}>
                   -
                 </button>
-                {isLoading ? "Loading" : item.quantity}
+                {isLoading ? (
+                  <div className="loader">
+                    <Loader />
+                  </div>
+                ) : (
+                  item.quantity
+                )}
                 <button
                   onClick={() =>
                     handleAddItem(item.id, item.product_id, item.quantity)

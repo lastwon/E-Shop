@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { commerce } from "../lib/commerce";
-
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
 import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
+import Loader from "./Loader";
 
 const ProductItem = ({ product }) => {
   const [productInfo, setProductInfo] = useState({});
+  const [loader, setLoader] = useState(false);
 
   const formatPrice = (price) => {
     const [integerPart, decimalPart] = price.toString().split(".");
@@ -31,6 +32,7 @@ const ProductItem = ({ product }) => {
   };
 
   const fetchProductData = async () => {
+    setLoader(true);
     try {
       const fetchedProduct = await commerce.products.retrieve(product.id);
       const productWithVariations = {
@@ -38,6 +40,7 @@ const ProductItem = ({ product }) => {
         variations: fetchedProduct.variant_groups,
       };
       setProductInfo([productWithVariations]);
+      setLoader(false);
     } catch (error) {
       console.error("Error retrieving product:", error);
     }
@@ -46,6 +49,14 @@ const ProductItem = ({ product }) => {
   useEffect(() => {
     fetchProductData();
   }, []);
+
+  if (loader) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="product__card">

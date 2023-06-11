@@ -11,10 +11,12 @@ import banner5 from "../images/banner5.jpg";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import ProductCategoryCurrent from "./ProductCategoryCurrent";
+import Loader from "./Loader";
 
 const ProductCategory = () => {
   const [product, setProduct] = useState(null);
   const params = useParams();
+  const [loader, setLoader] = useState(false);
 
   const phoneBanners =
     params.productCategory === "phones" ? (
@@ -73,10 +75,13 @@ const ProductCategory = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoader(true);
         const response = await commerce.products.list({
           category_slug: [params.productCategory],
         });
         setProduct(response.data);
+        console.log(response.data);
+        setLoader(false);
       } catch (error) {
         console.log("Error retrieving products:", error);
       }
@@ -96,12 +101,13 @@ const ProductCategory = () => {
           {computerBanners}
         </div>
         <div className="products__category" id="products">
-          {product ? (
-            <ProductCategoryCurrent product={product} />
-          ) : (
-            <div>Loading...</div>
-          )}
+          {product && <ProductCategoryCurrent product={product} />}
         </div>
+        {loader && (
+          <div className="loader">
+            <Loader />
+          </div>
+        )}
         <div className="spacer"></div>
       </div>
       <Footer />

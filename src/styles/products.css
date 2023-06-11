@@ -19,8 +19,9 @@
 .category__title {
   font-size: 26px;
   font-weight: bold;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   background-color: #fff;
+  color: #140f26;
 }
 
 .timmer {
@@ -36,6 +37,10 @@
 .products {
   background: #fff;
   padding: 20px;
+}
+
+.products-container {
+  background-color: red;
 }
 
 .products__category {
@@ -297,4 +302,12 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
 }

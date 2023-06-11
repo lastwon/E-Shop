@@ -75,7 +75,7 @@ const ProductCategoryCurrent = ({ product }) => {
                 </div>
               ))}
             <div className="product__name">
-              <a href="">{productItem.name}</a>
+              <Link to={`/${productItem.id}`}>{productItem.name}</Link>
             </div>
             <div className="product__variation">
               <ul className="variation__list">

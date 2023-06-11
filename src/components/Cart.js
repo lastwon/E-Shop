@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import CartItem from "./CartItem";
 import CartCheckout from "./CartCheckout";
 import Notification from "./Notification";
+import Loader from "./Loader";
 
 const Cart = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -98,6 +99,11 @@ const Cart = () => {
       <Nav />
       <div className="main-container">
         <div className="spacer"></div>
+        {loadingCart && (
+          <div className="loader">
+            <Loader />
+          </div>
+        )}
         <div className="cart__content">
           {cart && (
             <CartItem
