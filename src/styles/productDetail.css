@@ -131,3 +131,31 @@
   border: none;
   cursor: pointer;
 }
+
+.phone__banners {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.phone__banners div {
+  background-color: #f9f7f7;
+  height: 300px;
+}
+
+.phone__banners img {
+  max-width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+}
+
+.computers__banners {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.computers__banners img {
+  max-width: 100%;
+  height: 100%;
+}

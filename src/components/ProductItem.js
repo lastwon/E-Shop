@@ -66,7 +66,7 @@ const ProductItem = ({ product }) => {
           </div>
         ))}
         <div className="product__name">
-          <a href="">{product.name}</a>
+          <Link to={`/${product.id}`}>{product.name}</Link>
         </div>
         <div className="product__variation">
           <ul className="variation__list">

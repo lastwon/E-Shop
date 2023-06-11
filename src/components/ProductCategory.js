@@ -1,21 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { commerce } from "../lib/commerce";
+
+import banner1 from "../images/banner1.jpg";
+import banner2 from "../images/banner2.jpg";
+import banner3 from "../images/banner3.jpg";
+import banner4 from "../images/banner4.jpg";
+import banner5 from "../images/banner5.jpg";
 
 import Nav from "./Nav";
 import Footer from "./Footer";
-
-import { CiDeliveryTruck } from "react-icons/ci";
-import { AiFillStar } from "react-icons/ai";
-import greenCircle from "../images/green-circle.svg";
-import priceFront from "../images/priceFront.svg";
-import Unitsleft from "./Unitsleft";
 import ProductCategoryCurrent from "./ProductCategoryCurrent";
 
 const ProductCategory = () => {
   const [product, setProduct] = useState(null);
   const params = useParams();
+
+  const phoneBanners =
+    params.productCategory === "phones" ? (
+      <div className="phone__banners">
+        <div>
+          <img src={banner1} alt="" />
+        </div>
+        <div>
+          <img src={banner2} alt="" />
+        </div>
+      </div>
+    ) : (
+      ""
+    );
+
+  const computerBanners =
+    params.productCategory === "computers" ? (
+      <div className="computers__banners">
+        <div>
+          <img src={banner3} alt="" />
+        </div>
+        <div>
+          <img src={banner4} alt="" />
+        </div>
+        <div>
+          <img src={banner5} alt="" />
+        </div>
+      </div>
+    ) : (
+      ""
+    );
 
   const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -62,8 +92,10 @@ const ProductCategory = () => {
         <div className="spacer"></div>
         <div className="category__title">
           <span>{capitalizeFirstLetter(params.productCategory)}</span>
+          {phoneBanners}
+          {computerBanners}
         </div>
-        <div className="products" id="products">
+        <div className="products__category" id="products">
           {product ? (
             <ProductCategoryCurrent product={product} />
           ) : (

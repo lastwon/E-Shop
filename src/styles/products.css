@@ -34,10 +34,15 @@
 }
 
 .products {
+  background: #fff;
+  padding: 20px;
+}
+
+.products__category {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 15px;
   background: #fff;
+  gap: 15px;
   padding: 20px;
 }
 
@@ -50,6 +55,17 @@
 
 .product__card:hover {
   border-color: var(--color-border-green);
+}
+
+.splide__arrow:disabled {
+  display: none;
+}
+
+.product__slider .splide__arrow {
+  background-color: #fff;
+  top: 45%;
+  opacity: 1;
+  border: 1px solid #027ea6;
 }
 
 .image__container {
