@@ -214,19 +214,22 @@
   width: auto;
 }
 
-.product__price button {
+.product__price .leasing__info {
   display: flex;
-  width: 10%;
-  height: 100%;
   align-items: center;
   justify-content: center;
   padding: 4px;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
   color: #fff;
   background: #000;
   border-radius: 3px;
   margin-left: 3px;
+}
+
+.product__price .leasing__info span:nth-child(2) {
+  font-size: 11px;
 }
 
 .product__mid__price {

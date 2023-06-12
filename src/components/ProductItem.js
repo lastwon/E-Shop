@@ -13,22 +13,20 @@ const ProductItem = ({ product }) => {
   const [loader, setLoader] = useState(false);
 
   const formatPrice = (price) => {
-    const [integerPart, decimalPart] = price.toString().split(".");
-    if (decimalPart === "00") {
-      return <span>{integerPart}</span>;
-    } else {
-      return (
-        <>
-          <span>{integerPart}</span>
-          {decimalPart && (
-            <>
-              <span>.</span>
-              <sup className="product__price-decimal">{decimalPart}</sup>
-            </>
-          )}
-        </>
-      );
-    }
+    const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
+    const [integerPart, decimalPart] = formattedPrice.split(".");
+
+    return (
+      <>
+        <span>{integerPart}</span>
+        {decimalPart !== "00" && (
+          <>
+            <span>.</span>
+            <sup className="product__price-decimal">{decimalPart}</sup>
+          </>
+        )}
+      </>
+    );
   };
 
   const fetchProductData = async () => {
@@ -112,6 +110,14 @@ const ProductItem = ({ product }) => {
         <div className="product__mid__price">
           <span>{formatPrice(product.price.raw)} €</span>
         </div>
+        {product.price.raw > 70 ? (
+          <div className="leasing__info">
+            <span>{formatPrice(product.price.raw / 10)}</span>
+            <span>€/month</span>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
