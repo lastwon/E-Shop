@@ -13,7 +13,7 @@ import { TbSofa } from "react-icons/tb";
 import { BiBasketball } from "react-icons/bi";
 import { MdOutlineToys } from "react-icons/md";
 import { GiClothes } from "react-icons/gi";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { BsSunrise } from "react-icons/bs";
 import Slides from "./Slides";
 import { Link } from "react-router-dom";
 
@@ -102,10 +102,10 @@ const Hero = () => {
     },
     {
       id: 12,
-      icon: <RxHamburgerMenu style={style} />,
-      title: "All categories",
+      icon: <BsSunrise style={style} />,
+      title: "TOP",
       background: "#F1E6DB",
-      category: "discounts",
+      category: "top",
     },
   ];
   return (

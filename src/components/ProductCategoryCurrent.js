@@ -11,22 +11,20 @@ const ProductCategoryCurrent = ({ product }) => {
   const [productInfo, setProductInfo] = useState([]);
 
   const formatPrice = (price) => {
-    const [integerPart, decimalPart] = price.toString().split(".");
-    if (decimalPart === "00") {
-      return <span>{integerPart}</span>;
-    } else {
-      return (
-        <>
-          <span>{integerPart}</span>
-          {decimalPart && (
-            <>
-              <span>.</span>
-              <sup className="product__price-decimal">{decimalPart}</sup>
-            </>
-          )}
-        </>
-      );
-    }
+    const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
+    const [integerPart, decimalPart] = formattedPrice.split(".");
+
+    return (
+      <>
+        <span>{integerPart}</span>
+        {decimalPart !== "00" && (
+          <>
+            <span>.</span>
+            <sup className="product__price-decimal">{decimalPart}</sup>
+          </>
+        )}
+      </>
+    );
   };
 
   const fetchProductData = async () => {
@@ -65,15 +63,22 @@ const ProductCategoryCurrent = ({ product }) => {
                 alt={productItem.name}
               />
             </Link>
+            {productItem.categories.map((category) => (
+              <div key={category.id} className="top__title">
+                {category.name === "TOP" ? <span>TOP</span> : ""}
+              </div>
+            ))}
           </div>
           <div className="product__info">
-            {productItem.categories &&
-              productItem.categories.map((category) => (
-                <div key={category.id} className="product__category">
-                  <img src={greenCircle} alt="green-circle" />
-                  <span>{category.name}</span>
-                </div>
-              ))}
+            <div className="product__categories">
+              {productItem.categories &&
+                productItem.categories.map((category) => (
+                  <div key={category.id} className="product__category">
+                    <img src={greenCircle} alt="green-circle" />
+                    <span>{category.name}</span>
+                  </div>
+                ))}
+            </div>
             <div className="product__name">
               <Link to={`/${productItem.id}`}>{productItem.name}</Link>
             </div>
@@ -112,6 +117,14 @@ const ProductCategoryCurrent = ({ product }) => {
                 <span>{formatPrice(productItem.price.raw)} €</span>
               )}
             </div>
+            {productItem.price.raw > 70 ? (
+              <div className="leasing__info">
+                <span>{formatPrice(productItem.price.raw / 10)}</span>
+                <span>€/month</span>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ))}

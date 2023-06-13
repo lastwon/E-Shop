@@ -66,14 +66,21 @@ const ProductItem = ({ product }) => {
             alt={product.name}
           />
         </Link>
-      </div>
-      <div className="product__info">
         {product.categories.map((category) => (
-          <div key={category.id} className="product__category">
-            <img src={greenCircle} alt="green-circle" />
-            <span>{category.name}</span>
+          <div key={category.id} className="top__title">
+            {category.name === "TOP" ? <span>TOP</span> : ""}
           </div>
         ))}
+      </div>
+      <div className="product__info">
+        <div className="product__categories">
+          {product.categories.map((category) => (
+            <div key={category.id} className="product__category">
+              <img src={greenCircle} alt="green-circle" />
+              <span>{category.name}</span>
+            </div>
+          ))}
+        </div>
         <div className="product__name">
           <Link to={`/${product.id}`}>{product.name}</Link>
         </div>
