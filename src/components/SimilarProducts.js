@@ -112,6 +112,14 @@ const SimilarProducts = ({ product, formatPrice }) => {
               <div className="product__mid__price">
                 <span>{formatPrice(related.price.raw)} €</span>
               </div>
+              {product.price.raw > 70 ? (
+                <div className="leasing__info">
+                  <span>{formatPrice(related.price.raw / 10)}</span>
+                  <span>€/month</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </SplideSlide>
         ))}

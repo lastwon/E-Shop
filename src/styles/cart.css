@@ -11,6 +11,9 @@
   font-size: 21px;
   font-weight: 400;
   padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.23);
+  background-color: #fff;
 }
 
 .cart__info span:last-of-type {

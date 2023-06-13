@@ -13,18 +13,21 @@
   align-items: center;
   width: 100%;
   background-color: #fff;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
-.countdown span,
+.countdown,
 .category__title {
   font-size: 26px;
   font-weight: bold;
-  padding: 20px 20px 0 20px;
   background-color: #fff;
   color: #140f26;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
-.timmer {
+.timer {
   font-size: 26px;
   font-weight: bold;
   color: var(--color-light-green);

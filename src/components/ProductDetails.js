@@ -140,9 +140,17 @@ const ProductDetails = () => {
         <div className="main-container">
           <div className="current__product__info">
             <div className="current__product__all">
-              <div className="product__category">
-                <img src={greenCircle} alt="green-circle" />
-                <span>{productInfo.categories[0].name}</span>
+              <div className="product__categories">
+                {productInfo.categories.map((category) => (
+                  <div className="product__category">
+                    <img
+                      key={category.id}
+                      src={greenCircle}
+                      alt="green-circle"
+                    />
+                    <span>{category.name}</span>
+                  </div>
+                ))}
               </div>
               <div className="product__name">{productInfo.name}</div>
               <div className="product__general">

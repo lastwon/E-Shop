@@ -16,7 +16,7 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await commerce.products.list();
+      const { data } = await commerce.products.list({ limit: 100 });
       setProducts(data);
 
       const categoriesSet = new Set();
@@ -34,7 +34,7 @@ const Products = () => {
     }
   };
 
-  const desiredCategories = ["Computers", "Phones"];
+  const desiredCategories = ["Sale", "Computers", "Phones"];
 
   return (
     <div className="main-container">
@@ -43,7 +43,11 @@ const Products = () => {
         .filter((category) => desiredCategories.includes(category))
         .map((category) => (
           <div key={category}>
-            <h2 className="category__title">{category}</h2>
+            {category === "Sale" ? (
+              <Countdown />
+            ) : (
+              <h2 className="category__title">{category}</h2>
+            )}
             <div className="products" id="products">
               <Splide
                 className="product__slider"

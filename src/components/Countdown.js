@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/products.css";
 
 const Countdown = () => {
-  const targetDate = new Date("2023-06-13T23:00:00"); // Replace with your target date and time
+  const initialTargetDate = new Date("2023-06-17T23:00:00"); // Replace with your initial target date and time
+  const [targetDate, setTargetDate] = useState(initialTargetDate);
   const [countdown, setCountdown] = useState(targetDate - Date.now());
 
   useEffect(() => {
@@ -13,13 +14,20 @@ const Countdown = () => {
 
       if (remainingTime <= 0) {
         clearInterval(timer);
+        setTargetDate(getNextWeekTargetDate(targetDate)); // Reset target date to next week
       }
     }, 1000);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [targetDate]);
+
+  const getNextWeekTargetDate = (currentDate) => {
+    const nextWeek = new Date(currentDate);
+    nextWeek.setDate(currentDate.getDate() + 7);
+    return nextWeek;
+  };
 
   const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
@@ -36,7 +44,7 @@ const Countdown = () => {
     <>
       <div className="countdown">
         <span>Only this week</span>
-        <div className="timmer">
+        <div className="timer">
           {`${formatTime(days)} d. ${formatTime(hours)}:${formatTime(
             minutes
           )}:${formatTime(seconds)}`}
