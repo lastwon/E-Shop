@@ -19,27 +19,27 @@ const SimilarProducts = ({ product, formatPrice }) => {
   const [productInfo, setProductInfo] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  const fetchProductData = async () => {
-    setLoader(true);
-    try {
-      const productsWithVariations = await Promise.all(
-        related_products.map(async (related) => {
-          const fetchedProduct = await commerce.products.retrieve(related.id);
-          const productWithVariations = {
-            ...related,
-            variations: fetchedProduct.variant_groups,
-          };
-          setLoader(false);
-          return productWithVariations;
-        })
-      );
-      setProductInfo(productsWithVariations);
-    } catch (error) {
-      console.error("Error retrieving product:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchProductData = async () => {
+      setLoader(true);
+      try {
+        const productsWithVariations = await Promise.all(
+          related_products.map(async (related) => {
+            const fetchedProduct = await commerce.products.retrieve(related.id);
+            const productWithVariations = {
+              ...related,
+              variations: fetchedProduct.variant_groups,
+            };
+            setLoader(false);
+            return productWithVariations;
+          })
+        );
+        setProductInfo(productsWithVariations);
+      } catch (error) {
+        console.error("Error retrieving product:", error);
+      }
+    };
+
     fetchProductData();
   }, []);
 

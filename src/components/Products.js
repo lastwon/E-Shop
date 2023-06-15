@@ -11,28 +11,28 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await commerce.products.list({ limit: 100 });
+        setProducts(data);
+
+        const categoriesSet = new Set();
+        data.forEach((product) => {
+          product.categories.forEach((category) => {
+            categoriesSet.add(category.name);
+          });
+        });
+        const categoriesArray = Array.from(categoriesSet);
+        setCategories(categoriesArray);
+
+        console.log(data);
+      } catch (error) {
+        console.log("There was an error fetching the products", error);
+      }
+    };
+
     fetchProducts();
   }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const { data } = await commerce.products.list({ limit: 100 });
-      setProducts(data);
-
-      const categoriesSet = new Set();
-      data.forEach((product) => {
-        product.categories.forEach((category) => {
-          categoriesSet.add(category.name);
-        });
-      });
-      const categoriesArray = Array.from(categoriesSet);
-      setCategories(categoriesArray);
-
-      console.log(data);
-    } catch (error) {
-      console.log("There was an error fetching the products", error);
-    }
-  };
 
   const desiredCategories = ["Sale", "Computers", "Phones"];
 

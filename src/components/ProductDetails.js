@@ -41,18 +41,6 @@ const ProductDetails = () => {
     );
   };
 
-  const getProduct = async () => {
-    setloader(true);
-    try {
-      const product = await commerce.products.retrieve(params.productName);
-      setloader(false);
-      setProductInfo(product);
-      console.log(product);
-    } catch (error) {
-      console.error("Error retrieving product:", error);
-    }
-  };
-
   const removeTags = (text) => {
     const desc = productInfo.description;
     let plainText = desc.replace(/<p>/g, "");
@@ -105,14 +93,19 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
+    const getProduct = async () => {
+      setloader(true);
+      try {
+        const product = await commerce.products.retrieve(params.productName);
+        setProductInfo(product);
+        window.scrollTo(0, 0);
+        setloader(false);
+      } catch (error) {
+        console.error("Error retrieving product:", error);
+      }
+    };
     getProduct();
-  }, []);
-
-  useEffect(() => {
-    if (productInfo) {
-      setPrice(productInfo.price.raw);
-    }
-  }, [productInfo]);
+  }, [params.productName]);
 
   useEffect(() => {
     let timer;

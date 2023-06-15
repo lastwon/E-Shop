@@ -27,27 +27,27 @@ const ProductCategoryCurrent = ({ product }) => {
     );
   };
 
-  const fetchProductData = async () => {
-    try {
-      const productsData = await Promise.all(
-        product.map(async (productItem) => {
-          const fetchedProduct = await commerce.products.retrieve(
-            productItem.id
-          );
-          return {
-            ...productItem,
-            variations: fetchedProduct.variant_groups,
-            // Add variations to the product item
-          };
-        })
-      );
-      setProductInfo(productsData);
-    } catch (error) {
-      console.error("Error retrieving products:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const productsData = await Promise.all(
+          product.map(async (productItem) => {
+            const fetchedProduct = await commerce.products.retrieve(
+              productItem.id
+            );
+            return {
+              ...productItem,
+              variations: fetchedProduct.variant_groups,
+              // Add variations to the product item
+            };
+          })
+        );
+        setProductInfo(productsData);
+      } catch (error) {
+        console.error("Error retrieving products:", error);
+      }
+    };
+
     fetchProductData();
   }, []);
 
