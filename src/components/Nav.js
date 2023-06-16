@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import algoliasearch from "algoliasearch";
 
 import "../styles/nav.css";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillShopping } from "react-icons/ai";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHelpCircle } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
+import Hit from "./Hit";
 
 const Nav = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const [pressed, setPressed] = useState(false);
+
+  const searchClient = algoliasearch(
+    "LBQ1DEZ1S0",
+    "41c0e35604acac1cf429ef02c8d0ed55"
+  );
+
+  const handleSearchBoxClick = () => {
+    setPressed(true);
+  };
+
+  const handleSearchBoxBlur = () => {
+    setPressed(false);
+  };
 
   return (
     <nav>
@@ -30,17 +46,16 @@ const Nav = () => {
         />
         <span>Shope</span>
       </Link>
-      <form className="search-container" method="GET" action="/search/">
-        <input
-          className="search-bar"
-          type="text"
-          autoComplete="off"
-          placeholder="Search"
-        />
-        <button className="search-go" type="submit">
-          <AiOutlineSearch style={{ width: "21px", height: "auto" }} />
-        </button>
-      </form>
+      {searchClient && (
+        <InstantSearch searchClient={searchClient} indexName="products">
+          <SearchBox
+            className="search"
+            onClick={handleSearchBoxClick}
+            onBlur={handleSearchBoxBlur}
+          />
+          {pressed && <Hits hitComponent={Hit} />}
+        </InstantSearch>
+      )}
       <div className="reg-login">
         {!isAuthenticated ? (
           <button onClick={() => loginWithRedirect()}>

@@ -85,7 +85,6 @@ const ProductDetails = () => {
   const addToCart = async (productId, quantity) => {
     try {
       const response = await commerce.cart.add(productId, quantity);
-      console.log(response);
       setNotification("Added to the cart!");
     } catch (error) {
       console.error("Error adding product to cart:", error);
@@ -98,6 +97,7 @@ const ProductDetails = () => {
       try {
         const product = await commerce.products.retrieve(params.productName);
         setProductInfo(product);
+        setPrice(product.price.raw);
         window.scrollTo(0, 0);
         setloader(false);
       } catch (error) {
@@ -135,12 +135,8 @@ const ProductDetails = () => {
             <div className="current__product__all">
               <div className="product__categories">
                 {productInfo.categories.map((category) => (
-                  <div className="product__category">
-                    <img
-                      key={category.id}
-                      src={greenCircle}
-                      alt="green-circle"
-                    />
+                  <div className="product__category" key={category.id}>
+                    <img src={greenCircle} alt="green-circle" />
                     <span>{category.name}</span>
                   </div>
                 ))}

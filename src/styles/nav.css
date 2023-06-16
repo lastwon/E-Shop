@@ -2,12 +2,14 @@
 
 nav {
   display: flex;
+  position: relative;
   padding: 15px 12px 15px 20px;
   justify-content: space-between;
   align-items: center;
   background: #fff;
   box-shadow: 0 1px 2px 0 #0000001a;
   height: 70px;
+  z-index: 11;
 }
 
 .burger {
@@ -37,7 +39,8 @@ nav {
   text-decoration: none;
 }
 
-.search-container {
+.ais-SearchBox-form,
+.search {
   position: relative;
   display: flex;
   align-items: center;
@@ -48,7 +51,7 @@ nav {
   min-width: 100px;
 }
 
-.search-bar {
+.ais-SearchBox-input {
   height: 40px;
   border-radius: 50px;
   border: 1px solid #ececec;
@@ -62,13 +65,18 @@ nav {
   outline: none;
 }
 
-.search-go {
+.ais-SearchBox-submit {
   position: absolute;
   left: 15px;
-  top: 9px;
+  top: 12px;
   border: none;
   cursor: pointer;
   background-color: transparent;
+}
+
+.ais-SearchBox-submitIcon {
+  width: 15px;
+  height: 15px;
 }
 
 .reg-login,
@@ -141,4 +149,60 @@ nav {
   font-weight: 700;
   color: #787171;
   white-space: nowrap;
+}
+
+.ais-Hits {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  margin: 0 auto;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.ais-Hits-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  border: 1px solid #d5d5d5;
+}
+
+.search__product__card {
+  width: 100%;
+}
+
+.search__product__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  height: 50px;
+  border: 1px solid #d5d5d5;
+}
+
+.search__product__info:last-of-type {
+  border-top: none;
+  border-bottom: none;
+}
+
+.product__name {
+  width: 70%;
+}
+
+.price {
+  width: 20%;
+}
+
+.display {
+  display: block;
+}
+
+.none {
+  display: none;
 }

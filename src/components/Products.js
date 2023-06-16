@@ -41,6 +41,11 @@ const Products = () => {
       <div className="spacer"></div>
       {categories
         .filter((category) => desiredCategories.includes(category))
+        .sort((a, b) => {
+          if (a === "Sale") return -1;
+          if (b === "Sale") return 1;
+          return 0;
+        })
         .map((category) => (
           <div key={category}>
             {category === "Sale" ? (
