@@ -74,6 +74,15 @@ nav {
   background-color: transparent;
 }
 
+.ais-SearchBox-reset {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .ais-SearchBox-submitIcon {
   width: 15px;
   height: 15px;

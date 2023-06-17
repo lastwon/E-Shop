@@ -34,7 +34,7 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const desiredCategories = ["Sale", "Computers", "Phones"];
+  const desiredCategories = ["Sale", "TOP", "Computers", "Phones"];
 
   return (
     <div className="main-container">

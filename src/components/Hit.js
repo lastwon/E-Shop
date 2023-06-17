@@ -21,15 +21,11 @@ const Hit = ({ hit }) => {
     );
   };
 
-  useEffect(() => {
-    console.log(hit.id);
-  }, []);
-
   return (
     <div className="search__product__card">
-      <div className="search__product__info" key={hit.id}>
+      <div className="search__product__info" key={hit.objectID}>
         <div className="product__name">
-          <Link to={`/${hit.id}`}>{hit.name}</Link>
+          <Link to={`/${hit.objectID}`}>{hit.name}</Link>
         </div>
         <div className="price">
           <span>{formatPrice(hit.price.raw)} €</span>

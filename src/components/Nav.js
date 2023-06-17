@@ -20,8 +20,8 @@ const Nav = () => {
   const [pressed, setPressed] = useState(false);
 
   const searchClient = algoliasearch(
-    "LBQ1DEZ1S0",
-    "41c0e35604acac1cf429ef02c8d0ed55"
+    process.env.REACT_APP_ALGOLIA_CLIENT_ID,
+    process.env.REACT_APP_ALGOLIA_SEARCH_ID
   );
 
   const handleSearchBoxClick = () => {
@@ -29,7 +29,10 @@ const Nav = () => {
   };
 
   const handleSearchBoxBlur = () => {
-    setPressed(false);
+    // Delay setting pressed to false
+    setTimeout(() => {
+      setPressed(false);
+    }, 200);
   };
 
   return (
