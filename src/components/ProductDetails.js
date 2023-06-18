@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { commerce } from "../lib/commerce";
 import greenCircle from "../images/green-circle.svg";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -17,6 +18,7 @@ import SimilarProducts from "./SimilarProducts";
 import Loader from "./Loader";
 
 const ProductDetails = () => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const params = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const [price, setPrice] = useState(0);
@@ -218,19 +220,35 @@ const ProductDetails = () => {
                   </button>
                 </div>
               </div>
-              <button
-                onClick={() => addToCart(productInfo.id, quantity)}
-                className="add__to__cart"
-              >
-                <BsCart
-                  style={{
-                    width: "25px",
-                    height: "auto",
-                    color: "#fff",
-                  }}
-                />
-                Add to cart <b>{price} €</b>
-              </button>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => addToCart(productInfo.id, quantity)}
+                  className="add__to__cart"
+                >
+                  <BsCart
+                    style={{
+                      width: "25px",
+                      height: "auto",
+                      color: "#fff",
+                    }}
+                  />
+                  Add to cart <b>{price} €</b>
+                </button>
+              ) : (
+                <button
+                  onClick={() => loginWithRedirect()}
+                  className="add__to__cart"
+                >
+                  <BsCart
+                    style={{
+                      width: "25px",
+                      height: "auto",
+                      color: "#fff",
+                    }}
+                  />
+                  Add to cart <b>{price} €</b>
+                </button>
+              )}
               {notification && <Notification notification={notification} />}
             </div>
           </div>

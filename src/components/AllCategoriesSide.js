@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../styles/hero.css";
-
 import { MdOutlineDiscount } from "react-icons/md";
 import { TbDiscount } from "react-icons/tb";
 import { GiSmartphone } from "react-icons/gi";
@@ -15,12 +13,11 @@ import { BiBasketball } from "react-icons/bi";
 import { MdOutlineToys } from "react-icons/md";
 import { GiClothes } from "react-icons/gi";
 import { BsSunrise } from "react-icons/bs";
-import Slides from "./Slides";
 
-const Hero = () => {
+const AllCategoriesSide = ({ side }) => {
   const style = {
     color: "#212121",
-    fontSize: "45px",
+    fontSize: "33px",
   };
   const categorys = [
     {
@@ -108,26 +105,21 @@ const Hero = () => {
       category: "top",
     },
   ];
+
   return (
-    <section className="hero">
-      <Slides />
-      <div className="category">
-        <ul>
-          {categorys.map((categ) => (
-            <li
-              key={categ.id}
-              style={{ backgroundColor: `${categ.background}` }}
-            >
-              <Link to={`/category/${categ.category}`}>
-                {categ.icon}
-                <h6>{categ.title}</h6>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+    <ul className="category-lines">
+      {categorys.map((category) => (
+        <li className="category-line" key={category.id}>
+          <Link to={`/category/${category.category}`} onClick={side}>
+            <span style={{ background: `${category.background}` }}>
+              {category.icon}
+            </span>
+            <span>{category.title}</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
-export default Hero;
+export default AllCategoriesSide;

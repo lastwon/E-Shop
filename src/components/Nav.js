@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch";
+import { commerce } from "../lib/commerce";
 
 import "../styles/nav.css";
 
@@ -14,15 +15,22 @@ import { BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import Hit from "./Hit";
+import CategoriesSide from "./CategoriesSide";
 
 const Nav = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const [pressed, setPressed] = useState(false);
+  const [side, setSide] = useState(false);
 
   const searchClient = algoliasearch(
     process.env.REACT_APP_ALGOLIA_CLIENT_ID,
     process.env.REACT_APP_ALGOLIA_SEARCH_ID
   );
+
+  const handleLogout = async () => {
+    await commerce.cart.delete();
+    logout();
+  };
 
   const handleSearchBoxClick = () => {
     setPressed(true);
@@ -32,17 +40,32 @@ const Nav = () => {
     // Delay setting pressed to false
     setTimeout(() => {
       setPressed(false);
-    }, 200);
+    }, 100);
+  };
+
+  const handleSideOpen = () => {
+    setSide(true);
+  };
+
+  const handleSideClose = () => {
+    setTimeout(() => {
+      setSide(false);
+    }, 100);
   };
 
   return (
     <nav>
-      <a className="burger" href="">
+      <button
+        className="burger"
+        onClick={handleSideOpen}
+        onBlur={handleSideClose}
+      >
         <GiHamburgerMenu
           style={{ width: "25px", height: "25px", padding: "5px" }}
         />
         <span>All products</span>
-      </a>
+      </button>
+      {side ? <CategoriesSide side={handleSideClose} /> : ""}
       <Link className="logo" to="/">
         <AiFillShopping
           style={{ width: "25px", height: "25px", marginRight: "4.3px" }}
@@ -76,7 +99,7 @@ const Nav = () => {
             </span>
           </button>
         ) : (
-          <button onClick={() => logout()}>
+          <button onClick={handleLogout}>
             <BiLogOut
               style={{
                 width: "32px",
@@ -91,22 +114,26 @@ const Nav = () => {
           </button>
         )}
       </div>
-      <div className="wishlist-container">
-        <Link to="goods">
-          <AiOutlineHeart
-            style={{
-              width: "32px",
-              height: "auto",
-              padding: "8px 5px 10px 5px",
-              color: "#212121",
-            }}
-          />
-          <span className="wishlist">
-            <span>Liked</span>
-            <span>Goods</span>
-          </span>
-        </Link>
-      </div>
+      {isAuthenticated ? (
+        <div className="wishlist-container">
+          <Link to="goods">
+            <AiOutlineHeart
+              style={{
+                width: "32px",
+                height: "auto",
+                padding: "8px 5px 10px 5px",
+                color: "#212121",
+              }}
+            />
+            <span className="wishlist">
+              <span>Hello,</span>
+              <span>{user.nickname}</span>
+            </span>
+          </Link>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="help-container">
         <a href="">
           <BiHelpCircle

@@ -1,5 +1,12 @@
 @import "index.css";
 
+.empty {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 .cart__content {
   display: flex;
 }
@@ -48,7 +55,6 @@
 
 .cart__item {
   width: 100%;
-  padding: 25px 0px;
   background-color: #fff;
 }
 
@@ -59,11 +65,12 @@
 .cart__image {
   max-width: 118px;
   padding-right: 25px;
+  width: 20%;
 }
 
 .cart__image img {
   width: 100%;
-  height: auto;
+  max-height: 130px;
   mix-blend-mode: multiply;
 }
 
@@ -93,10 +100,11 @@
 .img__AndName {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .cart__name {
-  width: 100%;
+  width: 80%;
 }
 
 .cart__price {

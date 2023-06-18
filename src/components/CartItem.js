@@ -25,47 +25,57 @@ const CartItem = ({
 
   return (
     <>
-      <div className="cart__item">
-        <strong className="cart__title">Cart</strong>
-        {line_items.map((item) => {
-          const isLoading = loadingItems.includes(item.id);
+      {line_items.length > 0 ? (
+        <div className="cart__item">
+          <strong className="cart__title">Cart</strong>
+          {line_items.map((item) => {
+            const isLoading = loadingItems.includes(item.id);
 
-          return (
-            <div key={item.id} className="cart__details">
-              <div className="img__AndName">
-                <div className="cart__image">
-                  <img src={item.image.url} alt={item.name} />
-                </div>
-                <span className="cart__name">{item.name}</span>
-              </div>
-              <span className="cart__price">
-                <button onClick={() => handleSubtract(item.id, item.quantity)}>
-                  -
-                </button>
-                {isLoading ? (
-                  <div className="loader">
-                    <Loader />
+            return (
+              <div key={item.id} className="cart__details">
+                <div className="img__AndName">
+                  <div className="cart__image">
+                    <img src={item.image.url} alt={item.name} />
                   </div>
-                ) : (
-                  item.quantity
-                )}
+                  <span className="cart__name">{item.name}</span>
+                </div>
+                <span className="cart__price">
+                  <button
+                    onClick={() => handleSubtract(item.id, item.quantity)}
+                  >
+                    -
+                  </button>
+                  {isLoading ? (
+                    <div className="loader">
+                      <Loader />
+                    </div>
+                  ) : (
+                    item.quantity
+                  )}
+                  <button
+                    onClick={() =>
+                      handleAddItem(item.id, item.product_id, item.quantity)
+                    }
+                  >
+                    +
+                  </button>
+                </span>
+                <span className="cart__subtotal">{item.line_total.raw} €</span>
                 <button
-                  onClick={() =>
-                    handleAddItem(item.id, item.product_id, item.quantity)
-                  }
-                >
-                  +
-                </button>
-              </span>
-              <span className="cart__subtotal">{item.line_total.raw} €</span>
-              <button
-                onClick={() => handleRemove(item.id)}
-                className="cart__remove__item"
-              ></button>
-            </div>
-          );
-        })}
-      </div>
+                  onClick={() => handleRemove(item.id)}
+                  className="cart__remove__item"
+                ></button>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="cart__item">
+          <div className="empty">
+            <h1>Cart is empty...</h1>
+          </div>
+        </div>
+      )}
     </>
   );
 };

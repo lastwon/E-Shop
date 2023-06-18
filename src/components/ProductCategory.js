@@ -90,6 +90,22 @@ const ProductCategory = () => {
     fetchProducts();
   }, [params.productCategory]);
 
+  if (loader) {
+    return (
+      <>
+        <Nav />
+        <div className="main-container">
+          <div className="spacer"></div>
+          <div className="loader">
+            <Loader />
+          </div>
+          <div className="spacer"></div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Nav />
@@ -103,11 +119,6 @@ const ProductCategory = () => {
         <div className="products__category" id="products">
           {product && <ProductCategoryCurrent product={product} />}
         </div>
-        {loader && (
-          <div className="loader">
-            <Loader />
-          </div>
-        )}
         <div className="spacer"></div>
       </div>
       <Footer />
