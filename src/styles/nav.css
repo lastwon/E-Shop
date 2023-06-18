@@ -190,13 +190,11 @@ nav {
 
 .search__product__info {
   display: flex;
-  position: relative;
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
   height: 50px;
   border: 1px solid #d5d5d5;
-  z-index: 12;
 }
 
 .search__product__info:last-of-type {
