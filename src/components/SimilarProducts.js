@@ -41,15 +41,18 @@ const SimilarProducts = ({ product, formatPrice }) => {
     };
 
     fetchProductData();
-  }, []);
+  }, [product]);
+
+  if (loader) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="products" id="products">
-      {loader && (
-        <div className="loader">
-          <Loader />
-        </div>
-      )}
       <Splide
         className="product__slider"
         options={{ perPage: 4, gap: "15px", pagination: false, perMove: 1 }}

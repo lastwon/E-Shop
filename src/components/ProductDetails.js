@@ -16,6 +16,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import SimilarProducts from "./SimilarProducts";
 import Loader from "./Loader";
+import CommentForm from "./CommentForm";
 
 const ProductDetails = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -119,17 +120,23 @@ const ProductDetails = () => {
     return () => clearTimeout(timer);
   }, [notification]);
 
+  if (loader) {
+    return (
+      <>
+        <Nav />
+        <div className="spacer"></div>
+        <div className="loader">
+          <Loader />
+        </div>
+        <div className="spacer"></div>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Nav />
-      {loader && (
-        <>
-          <div className="spacer"></div>
-          <div className="loader">
-            <Loader />
-          </div>
-        </>
-      )}
       <div className="spacer"></div>
       {productInfo && (
         <div className="main-container">
@@ -173,9 +180,9 @@ const ProductDetails = () => {
               </div>
               <div className="description">
                 <h3>Description</h3>
-                <hr />
                 <span>{removeTags(productInfo.description)}</span>
               </div>
+              <CommentForm />
             </div>
             <div className="current__product__pay">
               <div className="product__both__prices">
