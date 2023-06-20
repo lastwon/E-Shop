@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { commerce } from "../lib/commerce";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
+import axios from "axios";
+
 import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
 import Unitsleft from "./Unitsleft";
@@ -11,6 +13,7 @@ import Loader from "./Loader";
 const ProductItem = ({ product }) => {
   const [productInfo, setProductInfo] = useState({});
   const [loader, setLoader] = useState(false);
+  const [rating, setRating] = useState({});
 
   const formatPrice = (price) => {
     const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
@@ -29,10 +32,37 @@ const ProductItem = ({ product }) => {
     );
   };
 
+  const ratingData = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:8081/${id}`);
+      let sum = 0;
+      let commentCount = 0;
+      response.data.forEach((element) => {
+        sum += element.rating;
+        if (element.comment) {
+          commentCount++;
+        }
+      });
+
+      const avgRating =
+        response.data.length > 0 ? sum / response.data.length : 0.0;
+      setRating((oldRatings) => ({
+        ...oldRatings,
+        [id]: {
+          average: avgRating,
+          comments: commentCount,
+        },
+      })); // Set the average rating for this product id
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const fetchProductData = async () => {
     setLoader(true);
     try {
       const fetchedProduct = await commerce.products.retrieve(product.id);
+      ratingData(product.id);
       const productWithVariations = {
         ...product,
         variations: fetchedProduct.variant_groups,
@@ -102,7 +132,14 @@ const ProductItem = ({ product }) => {
             className="star"
             style={{ height: "100%", width: "auto", paddingRight: "5px" }}
           />
-          <span>0.0</span>
+          <span>
+            {rating[product.id] ? rating[product.id].average.toFixed(1) : "0.0"}{" "}
+            {rating[product.id] && rating[product.id].comments === 0 ? (
+              ""
+            ) : (
+              <>({rating[product.id] && rating[product.id].comments})</>
+            )}
+          </span>
         </div>
         <div className="delivery">
           <CiDeliveryTruck

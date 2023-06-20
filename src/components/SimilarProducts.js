@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "../lib/commerce";
 import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import axios from "axios";
 
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "../styles/products.css";
 
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
-import greenCircle from "../images/green-circle.svg";
 import priceFront from "../images/priceFront.svg";
-import Unitsleft from "./Unitsleft";
 import Stock from "./Stock";
 import Loader from "./Loader";
 
@@ -18,6 +17,33 @@ const SimilarProducts = ({ product, formatPrice }) => {
   const { related_products } = product;
   const [productInfo, setProductInfo] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [rating, setRating] = useState({});
+
+  const ratingData = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:8081/${id}`);
+      let sum = 0;
+      let commentCount = 0;
+      response.data.forEach((element) => {
+        sum += element.rating;
+        if (element.comment) {
+          commentCount++;
+        }
+      });
+
+      const avgRating =
+        response.data.length > 0 ? sum / response.data.length : 0.0;
+      setRating((oldRatings) => ({
+        ...oldRatings,
+        [id]: {
+          average: avgRating,
+          comments: commentCount,
+        },
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -26,6 +52,7 @@ const SimilarProducts = ({ product, formatPrice }) => {
         const productsWithVariations = await Promise.all(
           related_products.map(async (related) => {
             const fetchedProduct = await commerce.products.retrieve(related.id);
+            ratingData(related.id);
             const productWithVariations = {
               ...related,
               variations: fetchedProduct.variant_groups,
@@ -37,11 +64,12 @@ const SimilarProducts = ({ product, formatPrice }) => {
         setProductInfo(productsWithVariations);
       } catch (error) {
         console.error("Error retrieving product:", error);
+        setLoader(false);
       }
     };
 
     fetchProductData();
-  }, [product]);
+  }, [product, related_products]);
 
   if (loader) {
     return (
@@ -96,7 +124,16 @@ const SimilarProducts = ({ product, formatPrice }) => {
                     paddingRight: "5px",
                   }}
                 />
-                <span>0.0</span>
+                <span>
+                  {rating[related.id]
+                    ? rating[related.id].average.toFixed(1)
+                    : "0.0"}{" "}
+                  {rating[related.id] && rating[related.id].comments === 0 ? (
+                    ""
+                  ) : (
+                    <>({rating[related.id] && rating[related.id].comments})</>
+                  )}
+                </span>
               </div>
               <div className="delivery">
                 <CiDeliveryTruck

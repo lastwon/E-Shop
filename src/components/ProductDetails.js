@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 import { commerce } from "../lib/commerce";
 import greenCircle from "../images/green-circle.svg";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -26,6 +27,7 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState("");
   const [loader, setloader] = useState(false);
+  const [rating, setRating] = useState([]);
 
   const formatPrice = (price) => {
     const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
@@ -71,6 +73,10 @@ const ProductDetails = () => {
     }
   };
 
+  const note = () => {
+    setNotification("Comment added successfully!");
+  };
+
   const incrementQuantity = () => {
     if (quantity < productInfo.inventory.available) {
       setQuantity((prevQuantity) => prevQuantity + 1);
@@ -94,6 +100,29 @@ const ProductDetails = () => {
     }
   };
 
+  const ratingData = async () => {
+    await axios
+      .get(`http://localhost:8081/${params.productName}`)
+      .then((res) => {
+        setRating(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const calculateAverageRating = () => {
+    if (rating.length === 0) {
+      return 0;
+    }
+
+    const totalRating = rating.reduce(
+      (sum, comment) => sum + comment.rating,
+      0
+    );
+    return totalRating / rating.length;
+  };
+
+  const averageRating = calculateAverageRating();
+
   useEffect(() => {
     const getProduct = async () => {
       setloader(true);
@@ -108,6 +137,7 @@ const ProductDetails = () => {
       }
     };
     getProduct();
+    ratingData();
   }, [params.productName]);
 
   useEffect(() => {
@@ -161,7 +191,9 @@ const ProductDetails = () => {
                       paddingRight: "5px",
                     }}
                   />
-                  <span>0.0</span>
+                  <span>
+                    {averageRating.toFixed(1)} ({rating.length})
+                  </span>
                 </div>
                 <div className="delivery">
                   <CiDeliveryTruck
@@ -182,7 +214,7 @@ const ProductDetails = () => {
                 <h3>Description</h3>
                 <span>{removeTags(productInfo.description)}</span>
               </div>
-              <CommentForm />
+              <CommentForm note={note} />
             </div>
             <div className="current__product__pay">
               <div className="product__both__prices">

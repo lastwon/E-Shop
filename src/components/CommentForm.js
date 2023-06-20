@@ -8,7 +8,7 @@ import userPhoto from "../images/userphoto.webp";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 
-const CommentForm = () => {
+const CommentForm = ({ note }) => {
   const [comments, setComments] = useState([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -24,23 +24,30 @@ const CommentForm = () => {
         name,
         comment,
         productName: params.productName,
+        rating,
       })
       .then((res) => {
+        setComments(res.data);
+        note();
         console.log("Comment submitted successfully:", res.data);
+        setName("");
+        setComment("");
+        setRating(5);
+        closeForm();
       })
       .catch((error) => {
         console.error("Error submitting comment:", error);
       });
   };
 
+  const reviewCount = comments.length;
+
   useEffect(() => {
     axios
       .get(`http://localhost:8081/${params.productName}`)
       .then((res) => setComments(res.data))
       .catch((err) => console.log(err));
-  }, [params.productName]);
-
-  const reviewCount = comments.length;
+  }, [params.productName, reviewCount]);
 
   const openForm = () => {
     setShowForm(true);
@@ -74,7 +81,7 @@ const CommentForm = () => {
                         width: "18px",
                       }}
                     />
-                    <span>2</span>
+                    <span>{comment.rating}</span>
                   </div>
                   {new Date(comment.createdAt).toISOString().split("T")[0]}
                 </div>

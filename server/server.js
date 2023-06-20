@@ -16,7 +16,8 @@ const db = mysql.createConnection({
 
 app.get("/:productName", (req, res) => {
   const { productName } = req.params;
-  const sql = "SELECT * FROM comments WHERE product_name = ?";
+  const sql =
+    "SELECT * FROM comments WHERE product_name = ? ORDER BY createdAt DESC";
   db.query(sql, [productName], (err, result) => {
     if (err) {
       console.error("Error retrieving comments:", err);
@@ -27,17 +28,23 @@ app.get("/:productName", (req, res) => {
 });
 
 app.post("/:productName", (req, res) => {
-  const { name, comment, productName } = req.body;
-  const sql =
-    "INSERT INTO comments (name, comment, product_name) VALUES (?, ?, ?)";
-  db.query(sql, [name, comment, productName], (err, result) => {
-    if (err) {
-      console.error("Error inserting comment:", err);
-      return res.status(500).json({ message: "Failed to insert comment" });
+  const { name, comment, productName, rating } = req.body;
+
+  const commentSql =
+    "INSERT INTO comments (name, comment, product_name, rating) VALUES (?, ?, ?, ?)";
+  db.query(
+    commentSql,
+    [name, comment, productName, rating],
+    (err, commentResult) => {
+      if (err) {
+        console.error("Error inserting comment:", err);
+        return res.status(500).json({ message: "Failed to insert comment" });
+      }
+
+      console.log("Comment inserted successfully");
+      res.status(200).json({ message: "Comment submitted successfully" });
     }
-    console.log("Comment inserted successfully");
-    res.status(200).json({ message: "Comment submitted successfully" });
-  });
+  );
 });
 
 app.listen(8081, () => {
