@@ -5,11 +5,15 @@ import { useParams } from "react-router-dom";
 import "../styles/comments.css";
 
 import userPhoto from "../images/userphoto.webp";
+import { AiOutlineClose } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 const CommentForm = () => {
   const [comments, setComments] = useState([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(5);
+  const [showForm, setShowForm] = useState(false);
   const params = useParams();
 
   const handleSubmit = (e) => {
@@ -36,54 +40,118 @@ const CommentForm = () => {
       .catch((err) => console.log(err));
   }, [params.productName]);
 
+  const reviewCount = comments.length;
+
+  const openForm = () => {
+    setShowForm(true);
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
   return (
     <>
-      {comments.length > 0 ? (
-        <>
-          <div className="reviews">
-            <hr />
-            <h3>Reviews</h3>
-          </div>
-          {comments.map((comment, index) => (
-            <div className="comments" key={index}>
-              <div className="top-line">
-                <div className="user-img">
-                  <img src={userPhoto} alt="user-photo" />
-                </div>
-                <div className="comment-info">
-                  <div className="comment-name">{comment.name}</div>
-                  <div className="comment-date">{comment.createdAt}</div>
+      <div className="reviews">
+        <hr />
+        <h3>Reviews ({reviewCount})</h3>
+      </div>
+      {reviewCount > 0 ? (
+        comments.map((comment, index) => (
+          <div className="comments" key={index}>
+            <div className="top-line">
+              <div className="user-img">
+                <img src={userPhoto} alt="user-photo" />
+              </div>
+              <div className="comment-info">
+                <div className="comment-name">{comment.name}</div>
+                <div className="comment-date">
+                  <div className="comment-rating">
+                    <AiFillStar
+                      className="star"
+                      style={{
+                        height: "18px",
+                        width: "18px",
+                      }}
+                    />
+                    <span>2</span>
+                  </div>
+                  {new Date(comment.createdAt).toISOString().split("T")[0]}
                 </div>
               </div>
-              <div className="comment">{comment.comment}</div>
             </div>
-          ))}
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="comment">Comment:</label>
-              <textarea
-                id="comment"
-                name="comment"
-                required
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              ></textarea>
-            </div>
+            <div className="comment">{comment.comment}</div>
+          </div>
+        ))
+      ) : (
+        <div className="no-comments">No comments</div>
+      )}
 
-            <button type="submit">Submit</button>
-          </form>
-        </>
+      <button className="leave-feedback-btn" onClick={openForm} type="button">
+        Leave feedback
+      </button>
+
+      {showForm ? (
+        <div className="backdrop">
+          <div className="form-popup">
+            <form onSubmit={handleSubmit}>
+              <div className="form-top">
+                <h3>Comment</h3>
+                <AiOutlineClose
+                  style={{
+                    width: "30px",
+                    height: "auto",
+                    color: "#6c7b8a",
+                    cursor: "pointer",
+                  }}
+                  onClick={closeForm}
+                />
+              </div>
+              <div className="form-full-name">
+                <span>Full name</span>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Full name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="form-rating">
+                <span>Rating</span>
+                <select
+                  id="rating"
+                  name="rating"
+                  required
+                  value={rating}
+                  onChange={(e) => setRating(parseInt(e.target.value))}
+                >
+                  <option value={1}>★</option>
+                  <option value={2}>★★</option>
+                  <option value={3}>★★★</option>
+                  <option value={4}>★★★★</option>
+                  <option value={5}>★★★★★</option>
+                </select>
+              </div>
+              <div className="form-comment">
+                <span>Comment</span>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  placeholder="Question or comment"
+                  required
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+              </div>
+              <button className="leave-feedback" type="submit">
+                Comment
+              </button>
+            </form>
+          </div>
+        </div>
       ) : (
         ""
       )}

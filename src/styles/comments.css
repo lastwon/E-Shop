@@ -40,14 +40,151 @@
 }
 
 .comment-date {
+  display: flex;
+  align-items: center;
   font-weight: normal;
   font-size: 12px;
   color: #717171;
   padding-right: 5px;
+  gap: 10px;
+}
+
+.comment-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.comment-rating span {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
 }
 
 .comment {
   font-size: 15px;
   line-height: 22px;
   white-space: break-spaces;
+}
+
+.reviews h3 {
+  font-size: 26px;
+  padding: 10px 10px 25px 0;
+}
+
+.no-comments {
+  margin-bottom: 20px;
+  color: #9e9e9e;
+  text-align: center;
+  font-weight: bold;
+}
+
+.leave-feedback-btn {
+  width: 175px;
+  height: 40px;
+  background: #140f26;
+  color: #fff;
+  border: 1px solid #140f26;
+  border-radius: 6px;
+  font: 500 15px var(--font-manrope), sans-serif;
+}
+
+.leave-feedback {
+  width: 175px;
+  height: 40px;
+  background: #140f26;
+  color: #fff;
+  border: 1px solid #140f26;
+  border-radius: 6px;
+  font: 500 15px var(--font-manrope), sans-serif;
+}
+
+.leave-feedback-btn:hover {
+  background: #fff;
+  color: #140f26;
+  border: 1px solid #140f26;
+}
+
+.form-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 638px;
+  max-width: unset;
+  margin: auto;
+  border-radius: 15px;
+  z-index: 9999;
+}
+
+.form-popup form {
+  margin-bottom: 30px;
+}
+
+.form-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.form-full-name,
+.form-rating {
+  position: relative;
+  height: 50px;
+  padding: 10px 0px 20px 0px;
+}
+
+.form-comment {
+  position: relative;
+  height: 100px;
+  padding: 10px 0px 20px 0px;
+}
+
+.form-full-name span,
+.form-rating span,
+.form-comment span {
+  position: absolute;
+  font-size: 14px;
+  top: 0;
+  left: 15px;
+  padding: 0 4px;
+  background: #fff;
+}
+
+.form-full-name input {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #d5d5d5;
+  font: bold 13px var(--font-manrope), sans-serif;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.form-rating select {
+  width: 50%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #d5d5d5;
+  background-color: #fff;
+  font: bold 13px var(--font-manrope), sans-serif;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.form-comment textarea {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+  font: bold 13px var(--font-manrope), sans-serif;
+  overflow-y: scroll;
 }
