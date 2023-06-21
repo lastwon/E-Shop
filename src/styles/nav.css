@@ -12,6 +12,17 @@ nav {
   z-index: 11;
 }
 
+@media (max-width: 1025px) {
+  nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    box-shadow: none;
+  }
+}
+
 .burger {
   display: flex;
   height: 43px;
@@ -28,6 +39,17 @@ nav {
   border: none;
 }
 
+@media (max-width: 1025px) {
+  .burger {
+    padding: 0 4px 0 4px;
+    margin-right: 3.5%;
+  }
+
+  .burger span {
+    display: none;
+  }
+}
+
 .logo {
   min-width: 152px;
   display: flex;
@@ -38,6 +60,22 @@ nav {
 
 .logo:hover {
   text-decoration: none;
+}
+
+@media (max-width: 1025px) {
+  .logo span {
+    display: none;
+  }
+
+  .logo {
+    min-width: 40px;
+  }
+
+  .logo svg {
+    width: 35px !important;
+    height: 35px !important;
+    margin-right: 0 !important;
+  }
 }
 
 .ais-SearchBox-form,
@@ -162,6 +200,34 @@ nav {
   white-space: nowrap;
 }
 
+@media (max-width: 1025px) {
+  .reg-login,
+  .wishlist-container,
+  .help-container {
+    display: none;
+  }
+
+  .ais-SearchBox-form,
+  .search {
+    margin-left: 2.9%;
+    margin-right: 2.9%;
+    flex-grow: 1;
+  }
+
+  .shopping-container {
+    padding: 0;
+  }
+
+  .shopping-container svg {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .shopping-container span {
+    display: none;
+  }
+}
+
 .ais-Hits {
   position: absolute;
   top: 100%;
@@ -216,4 +282,31 @@ nav {
 
 .none {
   display: none;
+}
+
+@media (max-width: 1025px) {
+  .ais-Hits {
+    right: 0;
+    width: 100%;
+  }
+
+  .search__product__info {
+    border: none;
+    padding: 2px 5px;
+    align-items: flex-start;
+    overflow-y: hidden;
+  }
+
+  .product__name {
+    width: 100%;
+  }
+
+  .price {
+    display: none;
+  }
+
+  .ais-SearchBox-form,
+  .search {
+    padding: 0;
+  }
 }

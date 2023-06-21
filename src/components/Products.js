@@ -61,6 +61,19 @@ const Products = () => {
                   gap: "15px",
                   pagination: false,
                   perMove: 1,
+                  breakpoints: {
+                    1225: {
+                      perPage: 3,
+                      gap: "15px",
+                    },
+                    860: {
+                      perPage: 2,
+                      gap: "15px",
+                    },
+                    600: {
+                      perPage: 1,
+                    },
+                  },
                 }}
               >
                 {products

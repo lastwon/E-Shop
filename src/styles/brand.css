@@ -38,6 +38,16 @@
   height: 40px;
 }
 
+@media (max-width: 1025px) {
+  .brand h4 {
+    font-size: 14px;
+  }
+
+  .brand-logo li {
+    height: 30px;
+  }
+}
+
 .brand-logo li img {
   display: inline-block;
   position: static;

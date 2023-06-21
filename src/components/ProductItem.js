@@ -80,7 +80,7 @@ const ProductItem = ({ product }) => {
 
   if (loader) {
     return (
-      <div className="loader">
+      <div className="loaderr">
         <Loader />
       </div>
     );

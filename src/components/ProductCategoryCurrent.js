@@ -49,7 +49,7 @@ const ProductCategoryCurrent = ({ product }) => {
     };
 
     fetchProductData();
-  }, [productInfo]);
+  }, []);
 
   return (
     <>

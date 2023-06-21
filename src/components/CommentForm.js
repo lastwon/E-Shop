@@ -30,9 +30,6 @@ const CommentForm = ({ note }) => {
         setComments(res.data);
         note();
         console.log("Comment submitted successfully:", res.data);
-        setName("");
-        setComment("");
-        setRating(5);
         closeForm();
       })
       .catch((error) => {
@@ -54,6 +51,9 @@ const CommentForm = ({ note }) => {
   };
 
   const closeForm = () => {
+    setName("");
+    setComment("");
+    setRating(5);
     setShowForm(false);
   };
 

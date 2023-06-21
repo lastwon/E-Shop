@@ -93,3 +93,13 @@
   border-bottom: 1px solid #e3e3e3;
   border-right: 1px solid #e3e3e3;
 }
+
+@media (max-width: 1025px) {
+  .category-line span:nth-child(1) {
+    height: 49px;
+  }
+
+  .category-line span:nth-child(2) {
+    font: bold 14px/49px var(--font-manrope), sans-serif;
+  }
+}

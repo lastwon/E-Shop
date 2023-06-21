@@ -46,7 +46,7 @@ const CartItem = ({
                     -
                   </button>
                   {isLoading ? (
-                    <div className="loader">
+                    <div className="loaderr">
                       <Loader />
                     </div>
                   ) : (

@@ -160,3 +160,25 @@
   text-align: center;
   padding-top: 5px;
 }
+
+@media (max-width: 1025px) {
+  .footer__links {
+    grid-template-columns: 1fr;
+  }
+
+  .question {
+    display: none;
+  }
+
+  .footer__end {
+    flex-direction: column;
+  }
+
+  .footer__left img {
+    margin: 0;
+  }
+
+  .footer__right {
+    align-items: center;
+  }
+}

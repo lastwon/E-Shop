@@ -188,3 +188,30 @@
   font: bold 13px var(--font-manrope), sans-serif;
   overflow-y: scroll;
 }
+
+@media (max-width: 1025px) {
+  .reviews h3 {
+    font-size: 20px;
+  }
+
+  .leave-feedback-btn,
+  .leave-feedback {
+    width: 100%;
+  }
+
+  .form-popup {
+    width: 100%;
+  }
+
+  form {
+    padding: 0 20px;
+  }
+
+  .form-full-name input {
+    width: 100%;
+  }
+
+  .form-rating select {
+    width: 100%;
+  }
+}

@@ -73,7 +73,7 @@ const SimilarProducts = ({ product, formatPrice }) => {
 
   if (loader) {
     return (
-      <div className="loader">
+      <div className="loaderr">
         <Loader />
       </div>
     );
@@ -83,10 +83,32 @@ const SimilarProducts = ({ product, formatPrice }) => {
     <div className="products" id="products">
       <Splide
         className="product__slider"
-        options={{ perPage: 4, gap: "15px", pagination: false, perMove: 1 }}
+        options={{
+          perPage: 4,
+          gap: "15px",
+          pagination: false,
+          perMove: 1,
+          breakpoints: {
+            1225: {
+              perPage: 3,
+              gap: "15px",
+            },
+            860: {
+              perPage: 2,
+              gap: "15px",
+            },
+            600: {
+              perPage: 1,
+            },
+          },
+        }}
       >
         {productInfo.map((related) => (
-          <SplideSlide key={related.id} className="product__card">
+          <SplideSlide
+            key={related.id}
+            className="product__card"
+            style={{ borderBottom: "none" }}
+          >
             <div className="image__container">
               <Link to={`/${related.id}`}>
                 <img

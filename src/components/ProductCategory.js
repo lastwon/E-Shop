@@ -111,12 +111,12 @@ const ProductCategory = () => {
       <Nav />
       <div className="main-container">
         <div className="spacer"></div>
-        <div className="category__title">
+        <div className="category__title-name">
           <span>{capitalizeFirstLetter(params.productCategory)}</span>
           {phoneBanners}
           {computerBanners}
         </div>
-        <div className="products__category" id="products">
+        <div className="products__category">
           {product && <ProductCategoryCurrent product={product} />}
         </div>
         <div className="spacer"></div>

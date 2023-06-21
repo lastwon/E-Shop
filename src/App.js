@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Nav from "./components/Nav";
 import Products from "./components/Products";
-import LikedGoods from "./components/LikedGoods";
 import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
 import ProductCategory from "./components/ProductCategory";
@@ -29,7 +28,6 @@ function App() {
             </>
           }
         />
-        <Route path="/goods" element={<LikedGoods />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/:productName" element={<ProductDetails />} />
         <Route
