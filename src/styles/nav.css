@@ -14,12 +14,11 @@ nav {
 
 @media (max-width: 1025px) {
   nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 40px;
-    box-shadow: none;
   }
 }
 

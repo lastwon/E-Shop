@@ -155,8 +155,10 @@ const ProductDetails = () => {
       <>
         <Nav />
         <div className="spacer"></div>
-        <div className="loader">
-          <Loader />
+        <div className="main-container">
+          <div className="loaderr">
+            <Loader />
+          </div>
         </div>
         <div className="spacer"></div>
         <Footer />
@@ -224,17 +226,21 @@ const ProductDetails = () => {
                     <span>{formatPrice(productInfo.price.raw)} €</span>
                   </div>
                 </div>
-                <div className="product__leasing__price">
-                  <span className="leasing__text">
-                    Leasing without increase
-                  </span>
-                  <span>
-                    <b>
-                      {formatPrice(productInfo.price.raw / 10)} € x 10 months
-                    </b>
-                  </span>
-                  <span className="product__or">or</span>
-                </div>
+                {productInfo.price.raw > 70 ? (
+                  <div className="product__leasing__price">
+                    <span className="leasing__text">
+                      Leasing without increase
+                    </span>
+                    <span>
+                      <b>
+                        {formatPrice(productInfo.price.raw / 10)} € x 10 months
+                      </b>
+                    </span>
+                    <span className="product__or">or</span>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <hr />
               <div className="select__quantity">

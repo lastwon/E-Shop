@@ -174,3 +174,42 @@
 button {
   cursor: pointer;
 }
+
+@media (max-width: 1025px) {
+  .empty h1 {
+    font-size: 25px;
+    padding: 10px 0;
+  }
+
+  .cart__content {
+    flex-direction: column;
+    margin-top: 70px;
+  }
+
+  .cart__info {
+    padding: 20px;
+    box-shadow: none;
+    border-radius: 0;
+    border-top: 1px solid #eee;
+  }
+
+  .cart__details {
+    grid-template-columns: 45% 25% 20% 10%;
+    padding: 20px 10px;
+  }
+
+  .img__AndName {
+    flex-direction: column;
+    height: 150px;
+  }
+
+  .cart__name {
+    width: 50%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  .cart__image {
+    width: 50%;
+  }
+}

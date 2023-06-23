@@ -73,9 +73,12 @@ const SimilarProducts = ({ product, formatPrice }) => {
 
   if (loader) {
     return (
-      <div className="loaderr">
-        <Loader />
-      </div>
+      <>
+        <div className="spacer"></div>
+        <div className="loaderr">
+          <Loader />
+        </div>
+      </>
     );
   }
 

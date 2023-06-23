@@ -80,7 +80,6 @@ const ProductCategory = () => {
           category_slug: [params.productCategory],
         });
         setProduct(response.data);
-        console.log(response.data);
         setLoader(false);
       } catch (error) {
         console.log("Error retrieving products:", error);
@@ -96,7 +95,7 @@ const ProductCategory = () => {
         <Nav />
         <div className="main-container">
           <div className="spacer"></div>
-          <div className="loader">
+          <div className="loaderr">
             <Loader />
           </div>
           <div className="spacer"></div>

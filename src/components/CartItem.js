@@ -27,7 +27,7 @@ const CartItem = ({
     <>
       {line_items.length > 0 ? (
         <div className="cart__item">
-          <strong className="cart__title">Cart</strong>
+          <strong className="cart__title">Cart ({line_items.length})</strong>
           {line_items.map((item) => {
             const isLoading = loadingItems.includes(item.id);
 

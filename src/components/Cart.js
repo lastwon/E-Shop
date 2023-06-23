@@ -26,7 +26,25 @@ const Cart = () => {
   const handleUpdateCart = async () => {
     setLoadingCart(true);
     try {
-      const cartData = await commerce.cart.retrieve();
+      let cartData = await commerce.cart.retrieve();
+
+      // Retrieve each item in the cart
+      for (let item of cartData.line_items) {
+        // Retrieve the product associated with the item
+        const product = await commerce.products.retrieve(item.product_id);
+
+        // If item quantity is greater than available quantity, update the item quantity
+        if (item.quantity > product.inventory.available) {
+          await commerce.cart.update(item.id, {
+            quantity: product.inventory.available,
+          });
+          setNotification("Item quantity adjusted to available stock!");
+        }
+      }
+
+      // Refresh the cart data after potentially updating quantities
+      cartData = await commerce.cart.retrieve();
+
       setCart(cartData);
     } catch (error) {
       console.error("Error updating cart", error);
@@ -85,7 +103,7 @@ const Cart = () => {
     if (notification) {
       timer = setTimeout(() => {
         setNotification("");
-      }, 4000);
+      }, 5000);
     }
     return () => clearTimeout(timer);
   }, [notification]);
@@ -93,17 +111,27 @@ const Cart = () => {
   if (!isAuthenticated) {
     return loginWithRedirect();
   }
+  if (loadingCart) {
+    return (
+      <>
+        <Nav />
+        <div className="spacer"></div>
+        <div className="main-container">
+          <div className="loaderr">
+            <Loader />
+          </div>
+        </div>
+        <div className="spacer"></div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
       <Nav />
       <div className="main-container">
         <div className="spacer"></div>
-        {loadingCart && (
-          <div className="loader">
-            <Loader />
-          </div>
-        )}
         <div className="cart__content">
           {cart && (
             <CartItem
