@@ -95,7 +95,7 @@ const ProductCategory = () => {
         <Nav />
         <div className="main-container">
           <div className="spacer"></div>
-          <div className="loaderr">
+          <div className="loader-pc">
             <Loader />
           </div>
           <div className="spacer"></div>

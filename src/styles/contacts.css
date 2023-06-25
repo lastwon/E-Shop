@@ -1,0 +1,10 @@
+.contacts {
+  background-color: #fff;
+  margin-top: 100px;
+}
+
+.contacts form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px 20px 25px 20px;
+}

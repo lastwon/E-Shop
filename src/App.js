@@ -9,6 +9,7 @@ import Products from "./components/Products";
 import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
 import ProductCategory from "./components/ProductCategory";
+import Contacts from "./components/Contacts";
 
 import "./styles/index.css";
 
@@ -34,6 +35,7 @@ function App() {
           path="/category/:productCategory"
           element={<ProductCategory />}
         />
+        <Route path="/contacts" element={<Contacts />} />
       </Routes>
     </Router>
   );

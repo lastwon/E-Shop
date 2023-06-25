@@ -117,7 +117,7 @@ const Cart = () => {
         <Nav />
         <div className="spacer"></div>
         <div className="main-container">
-          <div className="loaderr">
+          <div className="loader-pc">
             <Loader />
           </div>
         </div>

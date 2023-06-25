@@ -9,6 +9,7 @@
 
 .cart__content {
   display: flex;
+  margin-top: 100px;
 }
 
 .cart__info {
@@ -183,7 +184,6 @@ button {
 
   .cart__content {
     flex-direction: column;
-    margin-top: 70px;
   }
 
   .cart__info {

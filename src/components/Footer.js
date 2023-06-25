@@ -16,6 +16,7 @@ import fb from "../images/fb-icon.svg";
 import insta from "../images/instagram-icon.svg";
 import you from "../images/youtube-icon.svg";
 import linkedin from "../images/linkedin-icon.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,26 +25,39 @@ const Footer = () => {
       <div className="footer__links">
         <ul>
           <li>
-            <img src={question} alt="questionmark" />
-            <h5>Help</h5>
-            <img className="arrow" src={arrowright} alt="arrowright" />
+            <Link to={"/"}>
+              <img src={question} alt="questionmark" />
+              <h5>Help</h5>
+              <img className="arrow" src={arrowright} alt="arrowright" />
+            </Link>
           </li>
           <li>
-            <img src={phone} alt="phone" />
-            <h5>Contacts</h5>
-            <img className="arrow" src={arrowright} alt="arrowright" />
+            <Link to={"/contacts"}>
+              <img src={phone} alt="phone" />
+              <h5>Contacts</h5>
+              <img className="arrow" src={arrowright} alt="arrowright" />
+            </Link>
           </li>
           <li>
-            <AiOutlineShopping
-              style={{ width: "22px", height: "22px", paddingRight: "17px" }}
-            />
-            <h5>Shope</h5>
-            <img className="arrow" src={arrowright} alt="arrowright" />
+            <Link to={"/"}>
+              <AiOutlineShopping
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  paddingRight: "17px",
+                  color: "black",
+                }}
+              />
+              <h5>Shope</h5>
+              <img className="arrow" src={arrowright} alt="arrowright" />
+            </Link>
           </li>
           <li>
-            <img src={board} alt="questionmark" />
-            <h5>For business</h5>
-            <img className="arrow" src={arrowright} alt="arrowright" />
+            <Link to={"/"}>
+              <img src={board} alt="questionmark" />
+              <h5>For business</h5>
+              <img className="arrow" src={arrowright} alt="arrowright" />
+            </Link>
           </li>
         </ul>
         <div className="question">

@@ -4,6 +4,7 @@
   display: grid;
   position: relative;
   grid-template-columns: 70% 30%;
+  margin-top: 100px;
 }
 
 .current__product__all {
@@ -17,6 +18,11 @@
   margin: 0 auto;
   width: 704px;
   height: 430px;
+}
+
+.image img {
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .description h3 {
@@ -179,6 +185,7 @@
     border-top: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
     border-radius: 0;
+    margin-top: 30px;
   }
 
   .image {
