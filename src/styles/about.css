@@ -1,0 +1,19 @@
+.about {
+  margin-top: 100px;
+  background-color: #fff;
+}
+
+.about-more {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.about-more h1 {
+  font-size: 32px;
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.about-more .space {
+  margin: 10px 0;
+}

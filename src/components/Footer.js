@@ -39,7 +39,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/"}>
+            <Link to={"/about"}>
               <AiOutlineShopping
                 style={{
                   width: "22px",

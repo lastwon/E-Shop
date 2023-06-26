@@ -10,6 +10,7 @@ import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
 import ProductCategory from "./components/ProductCategory";
 import Contacts from "./components/Contacts";
+import About from "./components/About";
 
 import "./styles/index.css";
 
@@ -36,6 +37,7 @@ function App() {
           element={<ProductCategory />}
         />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );
