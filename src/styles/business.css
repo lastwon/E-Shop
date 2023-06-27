@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.business {
+  margin-top: 100px;
+  background-color: #fff;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.business h1 {
+  font-size: 36px;
+}
+
+.business p {
+  margin: 10px 0;
+  color: #444444;
+}
+
+.business-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 1%;
+  margin-top: 40px;
+  line-height: 24px;
+}
+
+.img-container {
+  padding: 10px;
+}
+
+.business-top img {
+  height: auto;
+  width: 244px;
+  margin-top: 40px;
+}
+
+.intro {
+  width: 60%;
+}
+
+.intro h4 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin: 12px 0;
+}
+
+.partner {
+  margin: 40px 0;
+  line-height: 30px;
+}
+
+.about-cards {
+  margin: 40px 0;
+}
+
+.about-cards h4 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.price-table {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.card {
+  width: 320px;
+  margin: 16px 10px;
+  vertical-align: top;
+  display: inline-block;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-top {
+  text-align: center;
+}
+
+.card-title {
+  font-family: var(--font-manrope);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-style: normal;
+  width: 100%;
+  height: 20px;
+  padding: 45px 0 0;
+  position: relative;
+}
+
+.card-price {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.card sup {
+  vertical-align: top;
+  font-size: 18px;
+}
+
+.card h4 {
+  font-size: 50px;
+  line-height: 50px;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.price-info {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 14px;
+  color: #cacaca;
+  margin: 7px 0;
+}
+
+.billed {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  margin: 30px 0;
+  position: relative;
+}
+
+.card-purpose {
+  text-align: center;
+  background-color: #edf0f3;
+  height: 50px;
+  line-height: 50px;
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #9ea1a3;
+}
+
+.features {
+  display: block !important;
+}
+
+.features ul {
+  list-style-type: none;
+  margin: 25px 0;
+  padding: 0 10px;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.features ul li {
+  text-align: center;
+  margin: 10px 0;
+}
+
+@media (max-width: 1025px) {
+  .business-top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img-container {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .business-top img {
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  .intro {
+    width: 100%;
+  }
+
+  .price-table {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    margin: 16px 0;
+  }
+}

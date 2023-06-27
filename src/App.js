@@ -11,6 +11,7 @@ import ProductDetails from "./components/ProductDetails";
 import ProductCategory from "./components/ProductCategory";
 import Contacts from "./components/Contacts";
 import About from "./components/About";
+import Business from "./components/Business";
 
 import "./styles/index.css";
 
@@ -38,6 +39,7 @@ function App() {
         />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/about" element={<About />} />
+        <Route path="/business" element={<Business />} />
       </Routes>
     </Router>
   );

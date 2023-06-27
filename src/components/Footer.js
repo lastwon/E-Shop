@@ -53,7 +53,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/"}>
+            <Link to={"/business"}>
               <img src={board} alt="questionmark" />
               <h5>For business</h5>
               <img className="arrow" src={arrowright} alt="arrowright" />
