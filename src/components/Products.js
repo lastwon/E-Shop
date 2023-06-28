@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { commerce } from "../lib/commerce";
 import ProductItem from "./ProductItem";
 import Countdown from "./Countdown";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
+import { banners } from "./Banners";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -34,7 +37,7 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const desiredCategories = ["Sale", "TOP", "Computers", "Phones"];
+  const desiredCategories = ["Sale", "TOP", "Computers", "Phones", "Perfumes"];
 
   return (
     <div className="main-container">
@@ -46,12 +49,43 @@ const Products = () => {
           if (b === "Sale") return 1;
           return 0;
         })
-        .map((category) => (
+        .map((category, index) => (
           <div key={category}>
-            {category === "Sale" ? (
-              <Countdown />
+            {banners.slice(index, index + 1).map((banner) => (
+              <div key={banner.id} className="home-banners">
+                <div className="banner1">
+                  <Link to={`/${banner.link}`}>
+                    <img src={banner.img} alt="" />
+                  </Link>
+                </div>
+                <div className="banner2">
+                  <Link to={`/${banner.link2}`}>
+                    <img src={banner.img2} alt="" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+            <div className="spacer"></div>
+            {category === "Sale" ? <Countdown /> : ""}
+            {category === "Computers" ? (
+              <h2 className="category__title">Laptops</h2>
             ) : (
-              <h2 className="category__title">{category}</h2>
+              ""
+            )}
+            {category === "Phones" ? (
+              <h2 className="category__title">Mobile phones</h2>
+            ) : (
+              ""
+            )}
+            {category === "TOP" ? (
+              <h2 className="category__title">TOP products</h2>
+            ) : (
+              ""
+            )}
+            {category === "Perfumes" ? (
+              <h2 className="category__title">Perfumes and cosmetics</h2>
+            ) : (
+              ""
             )}
             <div className="products" id="products">
               <Splide

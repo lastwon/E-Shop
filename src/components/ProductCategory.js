@@ -111,7 +111,10 @@ const ProductCategory = () => {
       <div className="main-container">
         <div className="spacer"></div>
         <div className="category__title-name">
-          <span>{capitalizeFirstLetter(params.productCategory)}</span>
+          <span>
+            {capitalizeFirstLetter(params.productCategory)} (
+            {product && product.length})
+          </span>
           {phoneBanners}
           {computerBanners}
         </div>

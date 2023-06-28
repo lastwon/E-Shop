@@ -91,7 +91,7 @@ const CommentForm = ({ note }) => {
           </div>
         ))
       ) : (
-        <div className="no-comments">No comments</div>
+        <div className="no-comments">No reviews</div>
       )}
 
       <button className="leave-feedback-btn" onClick={openForm} type="button">

@@ -25,6 +25,7 @@
   color: #140f26;
   padding-top: 20px;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .category__title-name {
@@ -89,8 +90,8 @@
   width: auto;
   height: auto;
   position: absolute;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 90%;
+  max-height: 90%;
   margin: auto;
   top: 0;
   bottom: 0;
@@ -319,6 +320,25 @@
   gap: 5px;
 }
 
+.home-banners {
+  display: flex;
+  width: 100%;
+  height: 215px;
+  gap: 20px;
+}
+
+.banner1,
+.banner2 {
+  width: 50%;
+}
+
+.home-banners img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
 @-webkit-keyframes noti {
   50% {
     transform: translateY(0);
@@ -405,5 +425,16 @@
   .products__category {
     display: flex;
     flex-direction: column;
+  }
+
+  .home-banners {
+    flex-direction: column;
+    gap: 5px;
+    height: auto;
+  }
+
+  .banner1,
+  .banner2 {
+    width: 100%;
   }
 }
