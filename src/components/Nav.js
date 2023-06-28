@@ -147,7 +147,7 @@ const Nav = () => {
           )}
         </div>
         <div className="help-container">
-          <a href="">
+          <Link to={"/help"}>
             <BiHelpCircle
               style={{
                 width: "32px",
@@ -160,7 +160,7 @@ const Nav = () => {
               <span>Shope</span>
               <span>Help</span>
             </span>
-          </a>
+          </Link>
         </div>
         <div className="shopping-container">
           {!isAuthenticated ? (

@@ -1,0 +1,33 @@
+.help {
+  margin-top: 100px;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.help h2 {
+  font-size: 22px;
+  color: #183247;
+}
+
+.help-content {
+  margin: 16px 0;
+}
+
+.help-content h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: normal;
+  border-bottom: solid 1px #02b875;
+  border-top: 0;
+  color: #9aa1a6;
+  line-height: 30.625px;
+  cursor: pointer;
+}
+
+.help-content p {
+  font-family: var(--font-manrope);
+  margin: 10px 0;
+  color: #183247;
+}

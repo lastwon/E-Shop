@@ -25,7 +25,7 @@ const Footer = () => {
       <div className="footer__links">
         <ul>
           <li>
-            <Link to={"/"}>
+            <Link to={"/help"}>
               <img src={question} alt="questionmark" />
               <h5>Help</h5>
               <img className="arrow" src={arrowright} alt="arrowright" />
