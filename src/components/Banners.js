@@ -22,21 +22,27 @@ export const banners = [
     img: generator,
     img2: headphones,
     link: "prod_Kvg9l68J3no1bB",
-    link2: "",
+    link2: "prod_VKXmwD4VZ8wrgD",
   },
   {
     id: 3,
     img: homeMovie,
     img2: home,
+    link: "prod_LvJjoPKkZ8we0n",
+    link2: "prod_eN1ql93OvBoz3y",
   },
   {
     id: 4,
     img: motherboards,
     img2: intel,
+    link: "prod_gnZO5kYLgmw7MN",
+    link2: "prod_7ZAMo102pewNJ4",
   },
   {
     id: 5,
     img: sun,
     img2: today,
+    link: "prod_r2LM5QQ1ZB5ZV1",
+    link2: "prod_NXELwjYKXAl3A4",
   },
 ];

@@ -141,36 +141,64 @@
   cursor: pointer;
 }
 
-.phone__banners {
+.phones__banners,
+.electronics__banners,
+.perfumes__banners,
+.garden__banners,
+.toys__banners {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.phone__banners div {
-  background-color: #f9f7f7;
-  height: 300px;
+.sports__banners,
+.footwear__banners {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.phone__banners img {
-  max-width: 100%;
+.phones__banners .banner__container,
+.electronics__banners .banner__container,
+.perfumes__banners .banner__container,
+.garden__banners .banner__container,
+.sports__banners .banner__container,
+.toys__banners .banner__container,
+.footwear__banners .banner__container {
+  background-color: #f9f7f7;
+  width: 100%;
+  height: 215px;
+}
+
+.phones__banners img,
+.computers__banners img,
+.electronics__banners img,
+.perfumes__banners img,
+.garden__banners img,
+.furniture__banners img,
+.sports__banners img,
+.toys__banners img,
+.footwear__banners img {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
   mix-blend-mode: multiply;
 }
 
-.computers__banners {
+.computers__banners,
+.furniture__banners {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.computers__banners img {
-  max-width: 100%;
-  height: 100%;
+.computers__banners .banner__container,
+.furniture__banners .banner__container {
+  background-color: #f9f7f7;
+  width: 100%;
 }
 
 @media (max-width: 1025px) {
-  .phone__banners {
+  .phones__banners {
     display: flex;
     flex-direction: column;
   }
