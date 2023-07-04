@@ -20,7 +20,7 @@ app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
 
-app.get("/:productName", (req, res) => {
+app.get("/api/:productName", (req, res) => {
   const { productName } = req.params;
   const sql =
     "SELECT * FROM comments WHERE product_name = ? ORDER BY createdAt DESC";
@@ -34,7 +34,7 @@ app.get("/:productName", (req, res) => {
   });
 });
 
-app.post("/:productName", (req, res) => {
+app.post("/api/:productName", (req, res) => {
   const { name, comment, productName, rating } = req.body;
   const commentSql =
     "INSERT INTO comments (name, comment, product_name, rating) VALUES (?, ?, ?, ?)";

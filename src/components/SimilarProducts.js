@@ -22,7 +22,7 @@ const SimilarProducts = ({ product, formatPrice }) => {
   const ratingData = async (id) => {
     try {
       const response = await axios.get(
-        `https://e-shope-60kk.onrender.com/${id}`
+        `https://e-shope-60kk.onrender.com/api/${id}`
       );
       let sum = 0;
       let commentCount = 0;

@@ -102,7 +102,7 @@ const ProductDetails = () => {
 
   const ratingData = async () => {
     await axios
-      .get(`https://e-shope-60kk.onrender.com:8081/${params.productName}`)
+      .get(`https://e-shope-60kk.onrender.com/api/${params.productName}`)
       .then((res) => {
         setRating(res.data);
       })
