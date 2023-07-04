@@ -2,14 +2,18 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import pool from "./db.js";
-import path from "path";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 // Serve static files from the React app
-app.use(express.static(path.resolve(__dirname, "..", "build")));
+app.use(express.static(path.resolve(__dirname, "public")));
 
 const port = process.env.PORT || 8081;
 app.listen(port, () => {
@@ -53,5 +57,7 @@ app.post("/:productName", (req, res) => {
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
+
+export default app;

@@ -1,0 +1,8 @@
+<svg id="Light_1px_help" data-name="Light 1px/help" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path id="Light_1px_help_background" data-name="Light 1px/help background" d="M0,0H24V24H0Z" fill="none"/>
+  <g id="Group" transform="translate(2 2)">
+    <path id="Combined_Shape" data-name="Combined Shape" d="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,1a9,9,0,1,0,9,9A9.01,9.01,0,0,0,10,1Z"/>
+    <path id="Ellipse_190" data-name="Ellipse 190" d="M.5,1A.5.5,0,1,1,1,.5.5.5,0,0,1,.5,1Z" transform="translate(9.5 15)"/>
+    <path id="Ellipse_191_Stroke_" data-name="Ellipse 191 (Stroke)" d="M.972,2.667a.5.5,0,1,1-.943-.333,3.5,3.5,0,1,1,3.8,4.631V8.5a.5.5,0,0,1-1,0v-2a.5.5,0,0,1,.5-.5A2.5,2.5,0,1,0,.972,2.667Z" transform="translate(6.671 4.5)"/>
+  </g>
+</svg>
