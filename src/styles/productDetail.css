@@ -198,9 +198,23 @@
 }
 
 @media (max-width: 1025px) {
-  .phones__banners {
+  .phones__banners,
+  .electronics__banners,
+  .perfumes__banners,
+  .garden__banners,
+  .toys__banners {
     display: flex;
     flex-direction: column;
+  }
+
+  .phones__banners .banner__container,
+  .electronics__banners .banner__container,
+  .perfumes__banners .banner__container,
+  .garden__banners .banner__container,
+  .sports__banners .banner__container,
+  .toys__banners .banner__container,
+  .footwear__banners .banner__container {
+    height: auto;
   }
 
   .current__product__info {
