@@ -19,6 +19,14 @@ import banner14 from "../images/sports1.jpg";
 import banner15 from "../images/toys1.webp";
 import banner16 from "../images/toys2.webp";
 import banner17 from "../images/footwear2.jpg";
+import banner18 from "../images/discount1.jpg";
+import banner19 from "../images/discount2.jpg";
+import banner20 from "../images/discount3.jpg";
+import banner21 from "../images/discount4.jpg";
+import banner22 from "../images/discount5.jpg";
+import banner23 from "../images/discount6.jpg";
+import banner24 from "../images/discount7.jpg";
+import banner25 from "../images/discount8.jpg";
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -31,6 +39,16 @@ const ProductCategory = () => {
   const [loader, setLoader] = useState(false);
 
   const bannerImages = {
+    discounts: [
+      banner18,
+      banner19,
+      banner20,
+      banner21,
+      banner22,
+      banner23,
+      banner24,
+      banner25,
+    ],
     phones: [banner1, banner2],
     computers: [banner3, banner4, banner5],
     electronics: [banner6, banner7],
@@ -115,15 +133,23 @@ const ProductCategory = () => {
       <div className="main-container">
         <div className="spacer"></div>
         <div className="category__title-name">
-          <span>
-            {capitalizeFirstLetter(params.productCategory)} (
-            {product && product.length})
-          </span>
+          {params.productCategory === "discounts" ? (
+            ""
+          ) : (
+            <span>
+              {capitalizeFirstLetter(params.productCategory)} (
+              {product && product.length})
+            </span>
+          )}
           {categoryBanners}
         </div>
-        <div className="products__category">
-          {product && <ProductCategoryCurrent product={product} />}
-        </div>
+        {params.productCategory === "discounts" ? (
+          ""
+        ) : (
+          <div className="products__category">
+            {product && <ProductCategoryCurrent product={product} />}
+          </div>
+        )}
         <div className="spacer"></div>
       </div>
       <Footer />

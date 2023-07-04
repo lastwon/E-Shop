@@ -151,6 +151,13 @@
   gap: 20px;
 }
 
+.discounts__banners {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
 .sports__banners,
 .footwear__banners {
   display: grid;
@@ -163,7 +170,8 @@
 .garden__banners .banner__container,
 .sports__banners .banner__container,
 .toys__banners .banner__container,
-.footwear__banners .banner__container {
+.footwear__banners .banner__container,
+.discounts__banners .banner__container {
   background-color: #f9f7f7;
   width: 100%;
   height: 215px;
@@ -177,7 +185,8 @@
 .furniture__banners img,
 .sports__banners img,
 .toys__banners img,
-.footwear__banners img {
+.footwear__banners img,
+.discounts__banners img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -202,7 +211,8 @@
   .electronics__banners,
   .perfumes__banners,
   .garden__banners,
-  .toys__banners {
+  .toys__banners,
+  .discounts__banners {
     display: flex;
     flex-direction: column;
   }
