@@ -102,7 +102,7 @@ const ProductDetails = () => {
 
   const ratingData = async () => {
     await axios
-      .get(`http://localhost:8081/${params.productName}`)
+      .get(`https://shope-online.netlify.app:8081/${params.productName}`)
       .then((res) => {
         setRating(res.data);
       })

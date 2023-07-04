@@ -33,7 +33,9 @@ const ProductCategoryCurrent = ({ product }) => {
 
   const ratingData = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8081/${id}`);
+      const response = await axios.get(
+        `https://shope-online.netlify.app/${id}`
+      );
       let sum = 0;
       let commentCount = 0;
       response.data.forEach((element) => {
