@@ -20,7 +20,7 @@ const CommentForm = ({ note }) => {
     e.preventDefault();
 
     axios
-      .post(`https://shope-online.netlify.app:8081/${params.productName}`, {
+      .post(`https://e-shope-60kk.onrender.com:8081/${params.productName}`, {
         name,
         comment,
         productName: params.productName,
@@ -41,7 +41,7 @@ const CommentForm = ({ note }) => {
 
   useEffect(() => {
     axios
-      .get(`https://shope-online.netlify.app:8081/${params.productName}`)
+      .get(`https://e-shope-60kk.onrender.com:8081/${params.productName}`)
       .then((res) => setComments(res.data))
       .catch((err) => console.log(err));
   }, [params.productName, reviewCount]);

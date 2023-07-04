@@ -35,7 +35,7 @@ const ProductItem = ({ product }) => {
   const ratingData = async (id) => {
     try {
       const response = await axios.get(
-        `https://shope-online.netlify.app:8081/${id}`
+        `https://e-shope-60kk.onrender.com:8081/${id}`
       );
       let sum = 0;
       let commentCount = 0;
